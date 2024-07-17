@@ -1,0 +1,19 @@
+.navbar-custom {
+    font-size: 1rem;
+    box-shadow: 1px 1px rgb(238, 238, 238);
+
+    .navbar-nav {
+        .nav-link {
+            color: #4535C1;
+
+            &:hover {
+                color: #0d0266;
+            }
+        }
+    }
+
+    .navbar-brand {
+        font-weight: bolder;
+        color: #4535C1;
+    }
+}
