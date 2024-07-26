@@ -1,19 +1,34 @@
+$navbar-bg-color: white;
+$navbar-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+$nav-link-color: #5e4de0;
+$nav-link-hover-color: #3b2abe;
+$navbar-brand-color: #0f0085;
+$nav-link-font-weight: bold;
+$navbar-brand-font-weight: bolder;
+$font-size: 1rem;
+$nav-link-transition: color 0.3s;
+$navbar-brand-padding-left: 10px;
+
 .navbar-custom {
-    font-size: 1rem;
-    box-shadow: 1px 1px rgb(238, 238, 238);
+    font-size: $font-size;
+    box-shadow: $navbar-box-shadow;
+    background-color: $navbar-bg-color;
 
     .navbar-nav {
         .nav-link {
-            color: #4535C1;
+            color: $nav-link-color;
+            font-weight: $nav-link-font-weight;
+            transition: $nav-link-transition;
 
             &:hover {
-                color: #0d0266;
+                color: $nav-link-hover-color;
             }
         }
     }
 
     .navbar-brand {
-        font-weight: bolder;
-        color: #4535C1;
+        padding-left: $navbar-brand-padding-left;
+        font-weight: $navbar-brand-font-weight;
+        color: $navbar-brand-color;
     }
 }

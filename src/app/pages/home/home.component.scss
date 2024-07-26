@@ -1,162 +1,72 @@
-// body {
-//     font-family: Arial, sans-serif;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     height: 100vh;
-//     background-color: #f0f8ff; /* Light blue background */
-//     margin: 0;
-// }
+$card-bg: #FFFFFF;
+$card-border: #DADFE1;
+$card-title: black;
+$card-subtitle: #4535C1;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$border-radius: 12px;
 
-// .container {
-//     text-align: center;
-//     background-color: #ffffff; /* White background for the container */
-//     padding: 20px;
-//     border-radius: 12px;
-//     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-// }
-
-// .input-group {
-//     margin-bottom: 20px;
-// }
-
-// #custom-topic {
-//     padding: 10px;
-//     width: 200px;
-//     margin-right: 10px;
-// }
-
-// #generate-quiz {
-//     padding: 10px 20px;
-//     background-color: #4CAF50;
-//     color: white;
-//     border: none;
-//     border-radius: 5px;
-//     cursor: pointer;
-// }
-
-// #generate-quiz:hover {
-//     background-color: #45a049;
-// }
-
-// .topics {
-//     display: flex;
-//     flex-wrap: wrap;
-//     justify-content: center;
-// }
-
-// .topics button {
-//     padding: 10px;
-//     margin: 10px;
-//     background: linear-gradient(to bottom, #e6f0ff, #cce0ff);
-//     color: black;
-//     border: none;
-//     cursor: pointer;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-//     border-radius: 12px;
-//     width: 120px;
-//     height: 120px;
-//     text-align: center;
-// }
-
-// .topics button img {
-//     width: 50px;
-//     height: 50px;
-//     margin-bottom: 10px;
-// }
-
-// .topics button:hover {
-//     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-// }
-
-// .topics button span {
-//     margin-top: 10px;
-// }
-
-
-body {
-    font-family: Arial, sans-serif;
+section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
-    background-color: #f0f8ff; /* Light blue background */
     margin: 0;
+    padding: 20px;
 }
 
 .headtext {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px 0;
     text-align: center;
+
+    h1 {
+        font-size: 2rem;
+        color: $card-title;
+        font-weight: bolder;
+    }
 }
 
 .container {
     text-align: center;
-    background-color: #ffffff; /* White background for the container */
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.input-group {
     margin-bottom: 20px;
-}
-
-#custom-topic {
-    padding: 10px;
-    width: 200px;
-    margin-right: 10px;
-}
-
-#generate-quiz {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#generate-quiz:hover {
-    background-color: #45a049;
 }
 
 .topics {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-}
 
-.topics button {
-    padding: 10px;
-    margin: 10px;
-    background: linear-gradient(to bottom, #e6f0ff, #cce0ff);
-    color: black;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    width: 120px;
-    height: 120px;
-    text-align: center;
-}
+    .card {
+        background-color: $card-bg;
+        border: 1px solid $card-border;
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
+        width: 200px;
+        margin: 10px;
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
 
-.topics button img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 10px;
-}
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
 
-.topics button:hover {
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
+        img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
 
-.topics button span {
-    margin-top: 10px;
+        .card-body {
+            .card-title {
+                font-size: 1.2rem;
+                color: $card-title;
+                margin-bottom: 5px;
+            }
+
+            .card-subtitle {
+                font-size: 1rem;
+                color: $card-subtitle;
+            }
+        }
+    }
 }

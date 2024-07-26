@@ -1,1 +1,10 @@
 @import "bootstrap/scss/bootstrap";
+
+$body-bg-color: #FFFFFF;
+$font-family: 'Roboto', sans-serif;
+
+body {
+    width: 100%;
+    font-family: $font-family;
+    background-color: $body-bg-color;
+}
