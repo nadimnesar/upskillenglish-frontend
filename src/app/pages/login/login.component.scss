@@ -1,0 +1,66 @@
+$card-bg: #FFFFFF;
+$card-border: #DADFE1;
+$card-title: black;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$border-radius: 12px;
+
+.auth-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .card {
+            background-color: $card-bg;
+            border: 1px solid $card-border;
+            border-radius: $border-radius;
+            box-shadow: $box-shadow;
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+
+            .card-title {
+                font-size: 1.5rem;
+                color: $card-title;
+                margin-bottom: 20px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+                text-align: left;
+
+                label {
+                    display: block;
+                    margin-bottom: 5px;
+                    color: #333;
+                }
+
+                .form-control {
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                }
+            }
+
+            .btn {
+                width: 100%;
+                padding: 10px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #0056b3;
+                }
+            }
+        }
+    }
+}
