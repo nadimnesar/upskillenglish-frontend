@@ -1,34 +1,32 @@
 $navbar-bg-color: white;
 $navbar-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-$nav-link-color: #5e4de0;
-$nav-link-hover-color: #3b2abe;
-$navbar-brand-color: #0f0085;
+$nav-link-color: #6D6E70;
+$hover-color: black;
 $nav-link-font-weight: bold;
-$navbar-brand-font-weight: bolder;
-$font-size: 1rem;
+$nav-link-font-size: 1rem;
 $nav-link-transition: color 0.3s;
-$navbar-brand-padding-left: 10px;
+$navbar-brand-padding-left: 20px;
 
 .navbar-custom {
-    font-size: $font-size;
     box-shadow: $navbar-box-shadow;
     background-color: $navbar-bg-color;
 
     .navbar-nav {
         .nav-link {
+            font-size: $nav-link-font-size;
             color: $nav-link-color;
             font-weight: $nav-link-font-weight;
             transition: $nav-link-transition;
 
             &:hover {
-                color: $nav-link-hover-color;
+                color: $hover-color;
             }
         }
     }
 
     .navbar-brand {
         padding-left: $navbar-brand-padding-left;
-        font-weight: $navbar-brand-font-weight;
-        color: $navbar-brand-color;
+        width: 200px;
+        height: 60px;
     }
 }
