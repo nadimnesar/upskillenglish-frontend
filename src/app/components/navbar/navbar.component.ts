@@ -10,22 +10,6 @@ import { AuthService } from '../../services/auth.service';
 export class NavbarComponent {
   constructor(private router: Router, protected authService: AuthService) { }
 
-  isLoginRoute(): boolean {
-    return this.router.url === '/login';
-  }
-
-  isHomeRoute(): boolean {
-    return this.router.url === '/';
-  }
-
-  isSignupRoute(): boolean {
-    return this.router.url === '/signup';
-  }
-
-  isLeaderboardRoute(): boolean {
-    return this.router.url === '/leaderboard';
-  }
-
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
