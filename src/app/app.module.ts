@@ -11,6 +11,8 @@ import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component'
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { QuickPracticeComponent } from './features/quick-practice/quick-practice.component';
+import { ImproveWritingComponent } from './features/improve-writing/improve-writing.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
     HomeComponent,
     LeaderboardComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    QuickPracticeComponent,
+    ImproveWritingComponent
   ],
   imports: [
     BrowserModule,
