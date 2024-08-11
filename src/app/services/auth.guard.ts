@@ -22,6 +22,7 @@ export class AuthGuard implements CanActivate {
      * @returns true if the route can be activated, false if the route cannot be activated.
      */
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        this.authService.hasValidToken();
         if (this.authService.isLoggedIn()) {
             return true;
         } else {

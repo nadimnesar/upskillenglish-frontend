@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { catchError, EMPTY, map, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +11,14 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   /**
- * JavaScript is a single-threaded language, so an HTTP request failure can block the entire thread.
- * To execute HTTP requests without blocking or killing the main thread, we use asynchronous programming.
- * This can be achieved using either Observables or Promises. Promises wait until the HTTP request is complete and
- * return a single value, while Observables can provide data over time.
- * 
- * Observables are a fundamental part of the RxJS library in Angular. They represent a sequence of values over time
- * and can stream data as it arrives.
- */
+   * JavaScript is a single-threaded language, so an HTTP request failure can block the entire thread.
+   * To execute HTTP requests without blocking or killing the main thread, we use asynchronous programming.
+   * This can be achieved using either Observables or Promises. Promises wait until the HTTP request is complete and
+   * return a single value, while Observables can provide data over time.
+   * 
+   * Observables are a fundamental part of the RxJS library in Angular. They represent a sequence of values over time
+   * and can stream data as it arrives.
+   */
   register(username: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, { username, password });
   }
@@ -38,8 +38,29 @@ export class AuthService {
     );
   }
 
-  getJwtToken(): string | null {
-    return localStorage.getItem('jwt');
+  hasValidToken(): void {
+    const token = localStorage.getItem('jwt');
+    if (token != null) {
+      const params = new HttpParams().set('token', token);
+  
+      this.http.post<{ status: boolean }>(`${this.apiUrl}/validate`, null, { params }).pipe(
+        map(response => {
+          if (response.status) {
+            console.log('Token is valid.');
+          } else {
+            localStorage.removeItem('jwt');
+            console.log('Token is invalid.');
+          }
+        }),
+        catchError(() => {
+          localStorage.removeItem('jwt');
+          console.log('Error occurred, token removed.');
+          return EMPTY;
+        })
+      ).subscribe();
+    } else {
+      console.log('No token found.');
+    }
   }
 
   logout(): void {
