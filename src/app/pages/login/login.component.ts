@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         this.errorMessage = error.error.message || 'Login failed. Please try again.';
       },
       complete: () => {
-        console.info('Registration process completed');
+        console.info('Login process completed');
       }
     });
   }
