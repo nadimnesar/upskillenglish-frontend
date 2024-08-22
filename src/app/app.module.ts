@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +15,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { QuickPracticeComponent } from './features/quick-practice/quick-practice.component';
 import { ImproveWritingComponent } from './features/improve-writing/improve-writing.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -29,9 +32,11 @@ import { ImproveWritingComponent } from './features/improve-writing/improve-writ
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
-  providers: [provideHttpClient(withInterceptorsFromDi())],
+  providers: [provideHttpClient(withInterceptorsFromDi()), provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

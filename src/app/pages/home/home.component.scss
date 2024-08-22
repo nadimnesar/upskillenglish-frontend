@@ -19,7 +19,7 @@ section {
     h1 {
         font-size: 2rem;
         color: $card-title;
-        font-weight: lighter;
+        font-weight: normal;
     }
 }
 
@@ -63,6 +63,7 @@ section {
         .card-body {
             .card-title {
                 font-size: 1.2rem;
+                font-weight: normal;
                 color: $card-title;
                 margin-bottom: 5px;
             }
