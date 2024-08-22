@@ -1,1 +1,43 @@
-<p>quick-practice works!</p>
+<section>
+    <div class="container">
+        <div class="headtext">
+            <h1>Quick Practice</h1>
+        </div>
+
+        <div class="loader" *ngIf="loading"></div>
+
+        <form *ngIf="!loading && questionList.length > 0" (ngSubmit)="onSubmit()">
+            <div class="quiz-card" *ngFor="let question of questionList; let i = index">
+                <h2>{{ question.question }}</h2>
+                <div class="options">
+                    <label>
+                        <input type="radio" name="answer{{ i }}" [value]="'a'" [(ngModel)]="question.userAnswer"
+                            required>
+                        {{ question.optionA }}
+                    </label>
+                    <label>
+                        <input type="radio" name="answer{{ i }}" [value]="'b'" [(ngModel)]="question.userAnswer">
+                        {{ question.optionB }}
+                    </label>
+                    <label>
+                        <input type="radio" name="answer{{ i }}" [value]="'c'" [(ngModel)]="question.userAnswer">
+                        {{ question.optionC }}
+                    </label>
+                    <label>
+                        <input type="radio" name="answer{{ i }}" [value]="'d'" [(ngModel)]="question.userAnswer">
+                        {{ question.optionD }}
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+
+        <div *ngIf="!loading && !questionList.length">
+            <p>No questions available at the moment.</p>
+        </div>
+    </div>
+
+    <div *ngIf="!loading && questionList.length > 0" class="countdown">
+        {{ minutes }}:{{ seconds | number: '2.0-0' }}
+    </div>
+</section>
