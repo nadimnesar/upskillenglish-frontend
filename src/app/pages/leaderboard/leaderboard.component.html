@@ -1,1 +1,38 @@
-<p>leaderboard works!</p>
+<section>
+    <div class="container">
+        <div class="headtext">
+            <h1>Leaderboard</h1>
+        </div>
+
+        <div class="loader" *ngIf="loading"></div>
+
+        <div *ngIf="!loading && userList.length > 0">
+            <div *ngFor="let user of userList; let i = index" class="leaderboard-card">
+                <div class="rank-and-username">
+                    <div class="rank">
+                        <span *ngIf="getGlobalRank(i) === 1" class="icon">🏆 1</span>
+                        <span *ngIf="getGlobalRank(i) === 2" class="icon">🥈 2</span>
+                        <span *ngIf="getGlobalRank(i) === 3" class="icon">🥉 3</span>
+                        <span *ngIf="getGlobalRank(i) > 3">{{ getGlobalRank(i) }}</span>
+                    </div>
+                    <div class="username">
+                        <h2>{{ user.username }}</h2>
+                    </div>
+                </div>
+                <div class="xp">
+                    <span class="icon">🪙 {{ user.xp }}</span>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <button (click)="loadPage(currentPage - 1)" [disabled]="currentPage === 0">Previous</button>
+                <span>Page {{ currentPage + 1 }}</span>
+                <button (click)="loadPage(currentPage + 1)" [disabled]="!hasNextPage">Next</button>
+            </div>
+        </div>
+
+        <div *ngIf="!loading && !userList.length">
+            <p>No users available at the moment.</p>
+        </div>
+    </div>
+</section>
