@@ -1,0 +1,88 @@
+$card-bg: #FFFFFF;
+$card-border: #DADFE1;
+$card-title: black;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$border-radius: 12px;
+$correct-color: #28a745;
+$wrong-color: #dc3545;
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 20px;
+  min-height: 80vh;
+}
+
+.headtext {
+  margin: 20px 0;
+  text-align: center;
+
+  h1 {
+    font-size: 2rem;
+    color: $card-title;
+    font-weight: normal;
+  }
+}
+
+.container {
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.result-card {
+  background-color: $card-bg;
+  border: 1px solid $card-border;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: left;
+
+  .question {
+    margin-bottom: 10px;
+    h2 {
+      font-size: 1.2rem;
+      color: $card-title;
+    }
+  }
+
+  .answer p {
+    margin: 5px 0;
+    font-size: 1rem;
+  }
+
+  .correct {
+    color: $correct-color;
+    font-weight: normal;
+  }
+
+  .incorrect {
+    color: $wrong-color;
+    font-weight: normal;
+  }
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+
+  .action-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}

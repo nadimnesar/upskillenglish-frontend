@@ -16,6 +16,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { QuickPracticeComponent } from './features/quick-practice/quick-practice.component';
 import { ImproveWritingComponent } from './features/improve-writing/improve-writing.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { QuickPracticeAnswerComponent } from './features/quick-practice/quick-practice-answer/quick-practice-answer.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     LoginComponent,
     SignupComponent,
     QuickPracticeComponent,
-    ImproveWritingComponent
+    ImproveWritingComponent,
+    QuickPracticeAnswerComponent
   ],
   imports: [
     BrowserModule,

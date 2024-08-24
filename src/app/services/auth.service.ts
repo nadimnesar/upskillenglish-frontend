@@ -34,6 +34,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/login`, { username, password }).pipe(
       tap((response: any) => {
         localStorage.setItem('jwt', response.jwt);
+        localStorage.setItem('username', response.username);
       })
     );
   }
@@ -49,11 +50,13 @@ export class AuthService {
             console.log('Token is valid.');
           } else {
             localStorage.removeItem('jwt');
+            localStorage.removeItem('username');
             console.log('Token is invalid.');
           }
         }),
         catchError(() => {
           localStorage.removeItem('jwt');
+          localStorage.removeItem('username');
           console.log('Error occurred, token removed.');
           return EMPTY;
         })
@@ -65,9 +68,14 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('username');
   }
 
   isLoggedIn(): boolean {
     return localStorage.getItem('jwt') !== null;
+  }
+
+  getUserName(): String | null {
+    return localStorage.getItem('username');
   }
 }

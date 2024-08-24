@@ -10,7 +10,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-
                     <!--
                     1. routerLink="/"
                     When the user clicks on this link, Angular will navigate to the specified route,
@@ -30,7 +29,6 @@
                     This ARIA attribute specifically indicates that this link points to the current page the user is on.
                     It improves accessibility by informing screen readers about the user's current location in the navigation.
                     -->
-
                     <a class="nav-link" routerLink="/" routerLinkActive="active-link"
                         [routerLinkActiveOptions]="{ exact: true }" aria-current="page">Home</a>
                 </li>
@@ -47,6 +45,9 @@
                 <li class="nav-item" *ngIf="!authService.isLoggedIn()">
                     <a class="nav-link" routerLink="/signup" routerLinkActive="active-link"
                         [routerLinkActiveOptions]="{ exact: true }" aria-current="page">Signup</a>
+                </li>
+                <li class="nav-item" *ngIf="authService.isLoggedIn()">
+                    <div class="nav-link"> Hi, {{ authService.getUserName() }} </div>
                 </li>
                 <li class="nav-item" *ngIf="authService.isLoggedIn()">
                     <a class="nav-link" (click)="logout()">Logout</a>
