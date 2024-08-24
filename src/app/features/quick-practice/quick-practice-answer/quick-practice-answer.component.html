@@ -1,28 +1,32 @@
 <section>
-    <div class="container">
-      <div class="headtext">
-        <h1>Quick Practice Results</h1>
+  <div class="container">
+    <div class="headtext">
+      <h1>Quick Practice Results</h1>
+    </div>
+
+    <div *ngIf="noAnswers">
+      <p>No questions answer available at the moment.</p>
+    </div>
+
+    <div *ngFor="let answer of responseAnswerList; let i = index" class="result-card">
+      <div class="question">
+        <h2>Question {{ i + 1 }}:</h2>
+        <p>{{ answer.question }}</p>
       </div>
-  
-      <div *ngFor="let answer of responseAnswerList; let i = index" class="result-card">
-        <div class="question">
-          <h2>Question {{ i + 1 }}:</h2>
-          <p>{{ answer.question }}</p>
-        </div>
-        <div class="answer">
-          <p><strong>Correct Answer:</strong> {{ answer.answer }}</p>
-          <p><strong>Your Answer:</strong>
-            <span [ngClass]="{'correct': answer.answer === answer.userAnswer, 'incorrect': answer.answer !== answer.userAnswer}">
-              {{ answer.userAnswer }}
-            </span>
-          </p>
-        </div>
-      </div>
-  
-      <div class="button-group">
-        <button class="action-button" (click)="startQuickPracticeAgain()">Restart Quick Practice</button>
-        <button class="action-button" (click)="navigateToHome()">Go to Home</button>
+      <div class="answer">
+        <p><strong>Correct Answer:</strong> {{ answer.answer }}</p>
+        <p><strong>Your Answer:</strong>
+          <span
+            [ngClass]="{'correct': answer.answer === answer.userAnswer, 'incorrect': answer.answer !== answer.userAnswer}">
+            {{ answer.userAnswer }}
+          </span>
+        </p>
       </div>
     </div>
-  </section>
-  
+
+    <div class="button-group">
+      <button class="action-button" (click)="startQuickPracticeAgain()">Restart Quick Practice</button>
+      <button class="action-button" (click)="navigateToHome()">Go to Home</button>
+    </div>
+  </div>
+</section>

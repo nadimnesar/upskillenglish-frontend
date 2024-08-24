@@ -45,6 +45,7 @@ section {
 
   .question {
     margin-bottom: 10px;
+
     h2 {
       font-size: 1.2rem;
       color: $card-title;
@@ -54,6 +55,10 @@ section {
   .answer p {
     margin: 5px 0;
     font-size: 1rem;
+
+    strong {
+      font-weight: 500;
+    }
   }
 
   .correct {

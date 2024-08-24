@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class QuickPracticeAnswerComponent implements OnInit {
   responseAnswerList: any[] = [];
+  noAnswers: boolean = true;
 
   constructor(private router: Router) { }
 
@@ -15,20 +16,24 @@ export class QuickPracticeAnswerComponent implements OnInit {
     const savedList = localStorage.getItem('responseAnswerList');
     if (savedList) {
       this.responseAnswerList = JSON.parse(savedList);
+      this.noAnswers = false;
     }
     else {
       console.warn('No Answer List');
-      this.router.navigate(['/']);
+      this.noAnswers = true;
     }
+  }
+
+  ngOnDestroy(): void {
+    localStorage.removeItem('responseAnswerList');
+    this.noAnswers = true;
   }
 
   navigateToHome(): void {
     this.router.navigate(['/']);
-    localStorage.removeItem('responseAnswerList');
   }
 
   startQuickPracticeAgain(): void {
     this.router.navigate(['/feature/quick-practice']);
-    localStorage.removeItem('responseAnswerList');
   }
 }
