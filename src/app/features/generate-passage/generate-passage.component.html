@@ -1,0 +1,36 @@
+<section>
+    <div class="container">
+        <div class="headtext">
+            <h1>Generate Passage</h1>
+        </div>
+
+        <div class="loader" *ngIf="loading"></div>
+
+        <div *ngIf="!loading">
+            <div class="card">
+                <p class="passage-text">{{ passage }}</p>
+            </div>
+
+            <button class="translate-button" (click)="toggleTranslation()">
+                {{ showTranslation ? 'Hide' : 'Translate' }}
+            </button>
+
+            <div class="card" *ngIf="showTranslation && translation">
+                <p class="translation-text">{{ translation }}</p>
+            </div>
+
+            <p *ngIf="!passage">No passage available at the moment.</p>
+
+            <div class="controls">
+                <select class="word-limit-selector" (change)="onWordLimitChange($event)">
+                    <option *ngFor="let limit of wordLimits" [value]="limit" [selected]="limit === selectedWordLimit">
+                        {{ limit }} words
+                    </option>
+                </select>
+                <button class="copy-button" (click)="copyPassage()">Copy Passage</button>
+                <button class="new-passage-button" (click)="getNewPassage()">New Passage</button>
+                <button class="return-home-button" (click)="goHome()">Return to Home</button>
+            </div>
+        </div>
+    </div>
+</section>

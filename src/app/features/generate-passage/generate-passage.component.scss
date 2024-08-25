@@ -1,0 +1,161 @@
+$card-bg: #FFFFFF;
+$card-border: #DADFE1;
+$card-title: black;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$border-radius: 12px;
+$button-bg: #007bff;
+$button-hover-bg: #0056b3;
+$translate-button-bg: #6c757d;
+$translate-button-hover-bg: #5a6268;
+$loader-color: #007bff;
+$copy-button-bg: #28a745;
+$copy-button-hover-bg: #218838;
+$new-passage-button-bg: #17a2b8;
+$new-passage-button-hover-bg: #117a8b;
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 20px;
+  min-height: 80vh;
+}
+
+.headtext {
+  margin: 20px 0;
+  text-align: center;
+
+  h1 {
+    font-size: 2rem;
+    color: $card-title;
+    font-weight: normal;
+  }
+}
+
+.container {
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+}
+
+.card {
+  background-color: $card-bg;
+  border: 1px solid $card-border;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.passage-text {
+  margin: 0;
+}
+
+.translate-button {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  background-color: $translate-button-bg;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  z-index: 1;
+}
+
+.translate-button:hover {
+  background-color: $translate-button-hover-bg;
+}
+
+.translation-text {
+  margin: 0;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid $loader-color;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.word-limit-selector {
+  padding: 10px;
+  border: 1px solid $card-border;
+  border-radius: $border-radius;
+  background-color: $card-bg;
+  margin: 10px;
+  outline: none;
+}
+
+.copy-button {
+  background-color: $copy-button-bg;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px;
+}
+
+.new-passage-button {
+  background-color: $new-passage-button-bg;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px;
+}
+
+.return-home-button {
+  background-color: $button-bg;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px;
+}
+
+.copy-button:hover {
+  background-color: $copy-button-hover-bg;
+}
+
+.new-passage-button:hover {
+  background-color: $new-passage-button-hover-bg;
+}
+
+.return-home-button:hover {
+  background-color: $button-hover-bg;
+}
