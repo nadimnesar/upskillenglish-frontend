@@ -7,11 +7,11 @@
         <div class="loader" *ngIf="loading"></div>
 
         <div *ngIf="!loading">
-            <div class="card">
+            <div *ngIf="passage" class="card">
                 <p class="passage-text">{{ passage }}</p>
             </div>
 
-            <button class="translate-button" (click)="toggleTranslation()">
+            <button *ngIf="passage" class="translate-button" (click)="toggleTranslation()">
                 {{ showTranslation ? 'Hide' : 'Translate' }}
             </button>
 
@@ -22,13 +22,13 @@
             <p *ngIf="!passage">No passage available at the moment.</p>
 
             <div class="controls">
-                <select class="word-limit-selector" (change)="onWordLimitChange($event)">
+                <select *ngIf="passage" class="word-limit-selector" (change)="onWordLimitChange($event)">
                     <option *ngFor="let limit of wordLimits" [value]="limit" [selected]="limit === selectedWordLimit">
                         {{ limit }} words
                     </option>
                 </select>
-                <button class="copy-button" (click)="copyPassage()">Copy Passage</button>
-                <button class="new-passage-button" (click)="getNewPassage()">New Passage</button>
+                <button *ngIf="passage" class="copy-button" (click)="copyPassage()">Copy Passage</button>
+                <button *ngIf="passage" class="new-passage-button" (click)="getNewPassage()">New Passage</button>
                 <button class="return-home-button" (click)="goHome()">Return to Home</button>
             </div>
         </div>
