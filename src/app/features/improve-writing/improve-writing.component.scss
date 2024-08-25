@@ -1,0 +1,125 @@
+/* Base styles */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Common styles for sections */
+.section {
+  border: 1px solid #ddd; /* Unified border style */
+  border-radius: 8px; /* Consistent border radius */
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for separation */
+}
+
+/* Consistent Heading Styles */
+h1, h2 {
+  color: #0056b3; /* Unified color for headings */
+  font-family: Arial, sans-serif; /* Unified font family */
+  font-weight: bold; /* Make headings bold */
+  margin-bottom: 10px; /* Add spacing below headings */
+}
+
+/* Topic Fetching Box */
+.topic-fetching-box {
+  background-color: #f9f9f9;
+}
+
+.topic-fetching-box h1 {
+  font-size: 28px; /* Larger font size for h1 */
+}
+
+.topic-fetching-box p {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* Writing Response Box */
+.writing-box {
+  background-color: #e9ecef;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid #ddd; /* Border for writing box to match other sections */
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.writing-box h2 {
+  font-size: 24px; /* Larger font size for h2 */
+}
+
+.writing-box textarea {
+  width: 100%;
+  height: 300px; /* Increased height */
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  resize: vertical; /* Allow vertical resizing only */
+}
+
+.writing-box button {
+  background-color: #ff6f6f; /* Light red color */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-end; /* Align button to the right */
+  height: 100%; /* Take full height of the container */
+}
+
+.writing-box button:hover {
+  background-color: #e55c5c; /* Darker red on hover */
+}
+
+/* Response Display Box */
+.response-display-box {
+  background-color: #fff;
+  min-height: 300px; /* Increased min-height */
+  border: 1px solid #ddd; /* Border to match other sections */
+  border-radius: 8px; /* Consistent border radius */
+  padding: 20px;
+  box-sizing: border-box; /* Ensure padding is included in height */
+}
+
+.response-display-box h2 {
+  font-size: 24px; /* Larger font size for h2 */
+}
+
+/* Specific styles for the "Expert Evaluation of Your Writing" heading */
+.feedback-heading {
+  color: #28a745; /* Green color */
+}
+
+/* Response Display Box - List and Paragraphs */
+.response-display-box ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.response-display-box p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Handle no topics and no feedback messages */
+.no-topics,
+.no-feedback {
+  text-align: center;
+  color: #6c757d;
+}
+
+.no-topics p,
+.no-feedback p {
+  font-size: 18px;
+}

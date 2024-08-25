@@ -1,1 +1,41 @@
-<p>improve-writing works!</p>
+
+
+<section>
+  <div class="container">
+
+    <!-- Topic Fetching Box -->
+    <div class="section topic-fetching-box">
+      <h1>Topic</h1>
+      <div *ngIf="topicList.length > 0; else noTopics">
+        <p>{{ topicList[0].topic }}</p>
+      </div>
+      <ng-template #noTopics>
+        <p>No topics available at the moment.</p>
+      </ng-template>
+    </div>
+
+    <!-- Writing Response Box -->
+    <div class="section writing-box">
+      <h2>Your Answer</h2>
+      <textarea [(ngModel)]="userResponse" placeholder="Write your response here..."></textarea>
+      <button (click)="submitResponse()">Submit Answer</button>
+    </div>
+
+    <!-- Response Display Box - Only visible if serverResponse is available -->
+    <div class="section response-display-box" *ngIf="serverResponse && serverResponse.solutionList.length > 0">
+      <h2 class="feedback-heading">Expert Evaluation of Your Writing</h2>
+      <ul>
+        <li *ngFor="let solution of serverResponse.solutionList">
+          <p>{{ solution.solution }}</p>
+        </li>
+      </ul>
+    </div>
+
+    <!-- No feedback available message -->
+    <div *ngIf="serverResponse && serverResponse.solutionList.length === 0">
+      <h2 class="feedback-heading">Expert Evaluation of Your Writing</h2>
+      <p>No feedback available.</p>
+    </div>
+
+  </div>
+</section>
