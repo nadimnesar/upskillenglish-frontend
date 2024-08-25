@@ -12,7 +12,7 @@ export class QuickPracticeComponent implements OnInit {
   private apiUrl = 'http://localhost:8080/api';
   questionList: any[] = [];
   loading: boolean = true;
-  minutes: number = 2;
+  minutes: number = 5;
   seconds: number = 0;
   countdownInterval: any;
 
@@ -67,7 +67,6 @@ export class QuickPracticeComponent implements OnInit {
   onSubmit(): void {
     this.submitForm();
     clearInterval(this.countdownInterval);
-    this.router.navigate(['/']);
   }
 
   submitForm(): void {
