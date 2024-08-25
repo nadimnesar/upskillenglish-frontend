@@ -75,7 +75,6 @@ export class GeneratePassageComponent implements OnInit {
 
   onWordLimitChange(event: any): void {
     this.selectedWordLimit = +event.target.value;
-    this.getPassage();
   }
 
   copyPassage(): void {
@@ -90,6 +89,8 @@ export class GeneratePassageComponent implements OnInit {
 
   getNewPassage(): void {
     this.loading = true;
+    this.showTranslation = false;
+    this.translation = null;
     this.getPassage();
   }
 
