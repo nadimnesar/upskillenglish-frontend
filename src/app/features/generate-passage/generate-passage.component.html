@@ -27,8 +27,8 @@
                         {{ limit }} words
                     </option>
                 </select>
-                <button *ngIf="passage" class="copy-button" (click)="copyPassage()">Copy Passage</button>
                 <button *ngIf="passage" class="new-passage-button" (click)="getNewPassage()">New Passage</button>
+                <button *ngIf="passage" class="copy-button" (click)="copyPassage()">Copy Passage</button>
                 <button class="return-home-button" (click)="goHome()">Return to Home</button>
             </div>
         </div>
