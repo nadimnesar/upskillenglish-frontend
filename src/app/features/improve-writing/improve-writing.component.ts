@@ -2,9 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-// Import the interfaces
-import { ServerResponse } from './models'; // Adjust the path as necessary
-
 @Component({
   selector: 'app-improve-writing',
   templateUrl: './improve-writing.component.html',
@@ -14,9 +11,9 @@ export class ImproveWritingComponent implements OnInit {
 
   private apiUrl = 'http://localhost:8080/api';
   topicList: any[] = [];
-  selectedTopic: string = ''; 
-  userResponse: string = '';  // To store the user's response
-  serverResponse: ServerResponse | null = null;   // Update the type
+  selectedTopic: string = '';
+  userResponse: string = '';
+  serverResponse: any | null = null;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -31,10 +28,9 @@ export class ImproveWritingComponent implements OnInit {
       'Content-Type': 'application/json'
     });
 
-    this.http.get(`${this.apiUrl}/genTopic`, { headers }).subscribe({
+    this.http.get(`${this.apiUrl}/v1/generate-topic`, { headers }).subscribe({
       next: (response: any) => {
         this.topicList = response.topicList || [];
-        console.log('Topic List:', this.topicList); // Log the topic list
         this.selectedTopic = this.topicList.length > 0 ? this.topicList[0].topic : '';
       },
       error: (error: any) => {
@@ -58,10 +54,9 @@ export class ImproveWritingComponent implements OnInit {
       answer: this.userResponse
     };
 
-    this.http.post<ServerResponse>(`${this.apiUrl}/v1/judge`, payload, { headers }).subscribe({
-      next: (response: ServerResponse) => {
-        console.log('Full API Response:', response); // Log the full response
-        this.serverResponse = response; // Assign the response directly
+    this.http.post<any>(`${this.apiUrl}/v1/judge-writing`, payload, { headers }).subscribe({
+      next: (response: any) => {
+        this.serverResponse = response;
       },
       error: (error: any) => {
         console.error('Error submitting response:', error);

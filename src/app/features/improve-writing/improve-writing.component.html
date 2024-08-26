@@ -1,11 +1,16 @@
-
-
 <section>
   <div class="container">
 
-    <!-- Topic Fetching Box -->
+    <div class="headtext">
+      <h1>Improve Writing</h1>
+    </div>
+
+    <!-- Topic Section -->
     <div class="section topic-fetching-box">
-      <h1>Topic</h1>
+      <div class="topic-header">
+        <h2>Topic</h2>
+        <button class="new-topic-button" (click)="fetchTopic()">New Topic</button>
+      </div>
       <div *ngIf="topicList.length > 0; else noTopics">
         <p>{{ topicList[0].topic }}</p>
       </div>
@@ -14,24 +19,26 @@
       </ng-template>
     </div>
 
-    <!-- Writing Response Box -->
+    <!-- Writing Section -->
     <div class="section writing-box">
       <h2>Your Answer</h2>
       <textarea [(ngModel)]="userResponse" placeholder="Write your response here..."></textarea>
       <button (click)="submitResponse()">Submit Answer</button>
     </div>
 
-    <!-- Response Display Box - Only visible if serverResponse is available -->
-    <div class="section response-display-box" *ngIf="serverResponse && serverResponse.solutionList.length > 0">
+    <!-- Evaluation Feedback Section -->
+    <div class="response-display-box" *ngIf="serverResponse && serverResponse.solutionList.length > 0">
       <h2 class="feedback-heading">Expert Evaluation of Your Writing</h2>
-      <ul>
+      <ul class="evaluation-list">
         <li *ngFor="let solution of serverResponse.solutionList">
-          <p>{{ solution.solution }}</p>
+          <div class="evaluation-item">
+            <p class="evaluation-text" [innerHTML]="solution.solution"></p>
+          </div>
         </li>
       </ul>
     </div>
 
-    <!-- No feedback available message -->
+    <!-- No Feedback Available Section -->
     <div *ngIf="serverResponse && serverResponse.solutionList.length === 0">
       <h2 class="feedback-heading">Expert Evaluation of Your Writing</h2>
       <p>No feedback available.</p>
