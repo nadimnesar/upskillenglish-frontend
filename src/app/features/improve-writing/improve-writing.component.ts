@@ -15,7 +15,7 @@ export class ImproveWritingComponent implements OnInit {
   userResponse: string = '';
   serverResponse: any | null = null;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.fetchTopic();
