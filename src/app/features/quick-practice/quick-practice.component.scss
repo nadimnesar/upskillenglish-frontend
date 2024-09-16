@@ -83,13 +83,11 @@ section {
 .countdown {
     position: fixed;
     top: 100px;
-    right: 20px;
+    right: 50px;
     z-index: 999;
-    background: #fff;
     color: #0056b3;
-    padding: 10px;
-    border-radius: 50%;
-    box-shadow: $box-shadow;
+    padding: 25px;
+    font-size: 2rem;
 }
 
 .submit-button {

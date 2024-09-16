@@ -5,7 +5,6 @@
       <h1>Improve Writing</h1>
     </div>
 
-    <!-- Topic Section -->
     <div class="section topic-fetching-box">
       <div class="topic-header">
         <h2>Topic</h2>
@@ -19,14 +18,12 @@
       </ng-template>
     </div>
 
-    <!-- Writing Section -->
     <div class="section writing-box">
       <h2>Your Answer</h2>
-      <textarea [(ngModel)]="userResponse" placeholder="Write your response here..."></textarea>
+      <textarea [(ngModel)]="userResponse" placeholder="Write your answer here..."></textarea>
       <button (click)="submitResponse()">Submit Answer</button>
     </div>
 
-    <!-- Evaluation Feedback Section -->
     <div class="response-display-box" *ngIf="serverResponse && serverResponse.solutionList.length > 0">
       <h2 class="feedback-heading">Expert Evaluation of Your Writing</h2>
       <ul class="evaluation-list">
@@ -38,7 +35,6 @@
       </ul>
     </div>
 
-    <!-- No Feedback Available Section -->
     <div *ngIf="serverResponse && serverResponse.solutionList.length === 0">
       <h2 class="feedback-heading">Expert Evaluation of Your Writing</h2>
       <p>No feedback available.</p>
