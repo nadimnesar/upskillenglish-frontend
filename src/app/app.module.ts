@@ -17,8 +17,8 @@ import { ImproveWritingComponent } from './features/improve-writing/improve-writ
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { QuickPracticeAnswerComponent } from './features/quick-practice/quick-practice-answer/quick-practice-answer.component';
 import { GeneratePassageComponent } from './features/generate-passage/generate-passage.component';
-import { GenerateAudioComponent } from './features/generate-audio/generate-audio.component';
 import { GenerateQuestionComponent } from './features/generate-question/generate-question.component';
+import { ImproveListeningComponent } from './features/improve-listening/improve-listening.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +33,8 @@ import { GenerateQuestionComponent } from './features/generate-question/generate
     ImproveWritingComponent,
     QuickPracticeAnswerComponent,
     GeneratePassageComponent,
-    GenerateAudioComponent,
-    GenerateQuestionComponent
+    GenerateQuestionComponent,
+    ImproveListeningComponent
   ],
   imports: [
     BrowserModule,
