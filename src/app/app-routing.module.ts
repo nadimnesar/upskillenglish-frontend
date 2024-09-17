@@ -9,6 +9,8 @@ import { ImproveWritingComponent } from './features/improve-writing/improve-writ
 import { AuthGuard } from './services/auth.guard';
 import { QuickPracticeAnswerComponent } from './features/quick-practice/quick-practice-answer/quick-practice-answer.component';
 import { GeneratePassageComponent } from './features/generate-passage/generate-passage.component';
+import { GenerateAudioComponent } from './features/generate-audio/generate-audio.component';
+import { GenerateQuestionComponent } from './features/generate-question/generate-question.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,7 +20,9 @@ const routes: Routes = [
   { path: 'feature/quick-practice', component: QuickPracticeComponent, canActivate: [AuthGuard] },
   { path: 'feature/improve-writing', component: ImproveWritingComponent, canActivate: [AuthGuard] },
   { path: 'feature/quick-practice/answer', component: QuickPracticeAnswerComponent, canActivate: [AuthGuard] },
-  { path: 'feature/generate-passage', component: GeneratePassageComponent, canActivate: [AuthGuard] }
+  { path: 'feature/generate-passage', component: GeneratePassageComponent, canActivate: [AuthGuard] },
+  { path: 'feature/generate-audio', component: GenerateAudioComponent, canActivate: [AuthGuard] },
+  { path: 'feature/generate-question', component: GenerateQuestionComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
