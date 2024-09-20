@@ -85,7 +85,7 @@ section {
     top: 100px;
     right: 50px;
     z-index: 999;
-    color: #0056b3;
+    color: red;
     padding: 25px;
     font-size: 2rem;
 }
@@ -103,4 +103,11 @@ section {
     &:hover {
         background-color: #0056b3;
     }
+}
+
+.error-message {
+    color: #ff4d4d;
+    padding: 10px;
+    margin-top: 15px;
+    text-align: center;
 }

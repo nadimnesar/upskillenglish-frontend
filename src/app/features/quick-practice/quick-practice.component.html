@@ -29,6 +29,9 @@
                     </label>
                 </div>
             </div>
+            <div *ngIf="showErrorMessage" class="error-message">
+                <p>Please answer all questions before submitting.</p>
+            </div>
             <button type="submit" class="submit-button">Submit</button>
         </form>
 

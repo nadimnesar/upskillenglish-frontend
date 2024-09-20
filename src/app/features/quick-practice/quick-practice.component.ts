@@ -15,11 +15,13 @@ export class QuickPracticeComponent implements OnInit {
   minutes: number = 5;
   seconds: number = 0;
   countdownInterval: any;
+  showErrorMessage: boolean = false;
 
   constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchQuestions();
+    this.showErrorMessage = false;
   }
 
   fetchQuestions(): void {
@@ -65,8 +67,17 @@ export class QuickPracticeComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.submitForm();
-    clearInterval(this.countdownInterval);
+    if (this.isAllQuestionsAnswered()) {
+      this.submitForm();
+      clearInterval(this.countdownInterval);
+      this.showErrorMessage = false;
+    } else {
+      this.showErrorMessage = true;
+    }
+  }
+
+  isAllQuestionsAnswered(): boolean {
+    return this.questionList.every(q => q.userAnswer !== undefined && q.userAnswer !== null && q.userAnswer !== '');
   }
 
   submitForm(): void {
