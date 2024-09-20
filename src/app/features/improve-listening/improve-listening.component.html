@@ -1,1 +1,33 @@
-<p>improve-listening works!</p>
+<section>
+    <div class="container">
+        <div class="headtext">
+            <h1>Improve Listening</h1>
+        </div>
+
+        <div class="loader" *ngIf="loading"></div>
+
+        <div *ngIf="!loading">
+            <div class="audio-container" *ngIf="audioSrc">
+                <audio controls [src]="audioSrc"></audio>
+            </div>
+
+            <button class="view-text-button" (click)="toggleViewText()">
+                {{ showText ? 'Hide Text' : 'View Text' }}
+            </button>
+
+            <div class="card" *ngIf="showText">
+                <p class="listening-text">{{ listeningText }}</p>
+            </div>
+
+            <button class="translate-button" *ngIf="listeningText" (click)="toggleTranslation()">
+                {{ showTranslation ? 'Hide Translation' : 'Translate' }}
+            </button>
+
+            <div class="card" *ngIf="showTranslation && translation">
+                <p class="translation-text">{{ translation }}</p>
+            </div>
+
+            <p *ngIf="!listeningText && !loading">No text available at the moment.</p>
+        </div>
+    </div>
+</section>

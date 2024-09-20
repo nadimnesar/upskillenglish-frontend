@@ -1,0 +1,109 @@
+$card-bg: #FFFFFF;
+$card-border: #DADFE1;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$border-radius: 12px;
+$button-bg: #007bff;
+$button-hover-bg: #0056b3;
+$audio-bg: #FFFFFF;
+$audio-control-color: #007bff;
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 80vh;
+}
+
+.headtext {
+    margin: 20px 0;
+    text-align: center;
+
+    h1 {
+        font-size: 2rem;
+        color: #333;
+        font-weight: normal;
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+}
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid $audio-control-color;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.audio-container {
+    background-color: $audio-bg;
+    border: 1px solid $card-border;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    text-align: center;
+
+    audio {
+        width: 100%;
+        outline: none;
+
+        &::-webkit-media-controls-panel {
+            background-color: $audio-bg;
+            color: $audio-control-color;
+        }
+
+        &::-webkit-media-controls-play-button,
+        &::-webkit-media-controls-mute-button {
+            color: $audio-control-color;
+        }
+    }
+}
+
+.view-text-button,
+.translate-button {
+    background-color: $button-bg;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: $button-hover-bg;
+    }
+}
+
+.view-text-button {
+    margin-right: 10px;
+}
+
+.card {
+    background-color: $card-bg;
+    border: 1px solid $card-border;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
