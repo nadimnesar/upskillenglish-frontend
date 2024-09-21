@@ -1,67 +1,67 @@
-<div class="container">
-    <h2>Create Questions</h2>
-  
-    <!-- Text input for user question -->
-    <div class="form-group">
-      <label for="userText">Enter your passage:</label>
-      <textarea id="userText" class="form-control" [(ngModel)]="userText" rows="3"></textarea>
+<section>
+  <div class="container">
+    <div class="headtext">
+      <h1>Create Question</h1>
     </div>
-  
-    <!-- Submit buttons for different question types -->
+
+    <div class="form-group">
+      <h2>Your Passage</h2>
+      <textarea [(ngModel)]="userText" placeholder="Enter your passage here..."></textarea>
+    </div>
+
     <div class="button-group">
       <button (click)="submitMCQ()" class="btn btn-primary">MCQ</button>
       <button (click)="submitOpinionative()" class="btn btn-primary">Opinionative</button>
       <button (click)="submitFactCheck()" class="btn btn-primary">Fact Check</button>
       <button (click)="submitCompletion()" class="btn btn-primary">Sentence Completion</button>
     </div>
-  
-    <hr />
-  
-    <!-- MCQ Response -->
-    <div *ngIf="mcqResponse">
+
+    <div *ngIf="mcqResponse" class="card response-display-box">
       <h3>MCQ Questions</h3>
-      <div *ngFor="let mcq of mcqResponse.mcqList; let i = index" class="mcq-item">
+      <div *ngFor="let mcq of mcqResponse.mcqList; let i = index" class="item">
         <p><strong>Question {{ i + 1 }}:</strong> {{ mcq.question }}</p>
-        <button (click)="toggleAnswerVisibility(i)" class="btn btn-info">
+        <p><strong>A:</strong> {{ mcq.optionA }}</p>
+        <p><strong>B:</strong> {{ mcq.optionB }}</p>
+        <p><strong>C:</strong> {{ mcq.optionC }}</p>
+        <p><strong>D:</strong> {{ mcq.optionD }}</p>
+        <button (click)="toggleAnswerVisibility(i)" class="btn btn-primary">
           {{ showAnswers[i] ? 'Hide Answer' : 'Show Answer' }}
         </button>
         <p *ngIf="showAnswers[i]"><strong>Answer:</strong> {{ mcq.answer }}</p>
       </div>
     </div>
-  
-    <!-- Opinionative Response -->
-    <div *ngIf="opinionativeResponse">
+
+    <div *ngIf="opinionativeResponse" class="card response-display-box">
       <h3>Opinion Based Questions</h3>
-      <div *ngFor="let opinionative of opinionativeResponse; let i = index" class="opinionative-item">
+      <div *ngFor="let opinionative of opinionativeResponse; let i = index" class="item">
         <p><strong>Question {{ i + 1 }}:</strong> {{ opinionative.question }}</p>
-        <button (click)="toggleOpinionativeAnswerVisibility(i)" class="btn btn-info">
+        <button (click)="toggleOpinionativeAnswerVisibility(i)" class="btn btn-primary">
           {{ showOpinionativeAnswers[i] ? 'Hide Answer' : 'Show Answer' }}
         </button>
         <p *ngIf="showOpinionativeAnswers[i]"><strong>Answer:</strong> {{ opinionative.answer }}</p>
       </div>
     </div>
-  
-    <!-- Fact Check Response -->
-    <div *ngIf="factCheckResponse">
-      <h3>Fact Checking Questions </h3>
-      <div *ngFor="let factCheck of factCheckResponse; let i = index" class="fact-check-item">
+
+    <div *ngIf="factCheckResponse" class="card response-display-box">
+      <h3>Fact Checking Questions</h3>
+      <div *ngFor="let factCheck of factCheckResponse; let i = index" class="item">
         <p><strong>Question {{ i + 1 }}:</strong> {{ factCheck.question }}</p>
-        <button (click)="togglefactCheckAnswerVisibility(i)" class="btn btn-info">
+        <button (click)="togglefactCheckAnswerVisibility(i)" class="btn btn-primary">
           {{ showFactCheckAnswers[i] ? 'Hide Answer' : 'Show Answer' }}
         </button>
         <p *ngIf="showFactCheckAnswers[i]"><strong>Answer:</strong> {{ factCheck.answer }}</p>
       </div>
     </div>
-  
-    <!-- Completion Response -->
-    <div *ngIf="completionResponse">
+
+    <div *ngIf="completionResponse" class="card response-display-box">
       <h3>Sentence Completion</h3>
-      <div *ngFor="let completion of completionResponse; let i = index" class="completion-item">
-        <p><strong>Sentence {{ i + 1 }}:</strong> {{ completion.sentence }}</p>  <!-- Corrected field access -->
-        <button (click)="togglecompletionAnswerVisibility(i)" class="btn btn-info">
+      <div *ngFor="let completion of completionResponse; let i = index" class="item">
+        <p><strong>Sentence {{ i + 1 }}:</strong> {{ completion.sentence }}</p>
+        <button (click)="togglecompletionAnswerVisibility(i)" class="btn btn-primary">
           {{ showCompletionAnswers[i] ? 'Hide Answer' : 'Show Answer' }}
         </button>
-        <p *ngIf="showCompletionAnswers[i]"><strong>Answer:</strong> {{ completion.answer }}</p>  <!-- Corrected field access -->
+        <p *ngIf="showCompletionAnswers[i]"><strong>Answer:</strong> {{ completion.answer }}</p>
       </div>
     </div>
   </div>
+</section>

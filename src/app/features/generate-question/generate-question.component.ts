@@ -8,21 +8,20 @@ import { Component } from '@angular/core';
 })
 export class GenerateQuestionComponent {
 
-  private apiUrl = 'http://localhost:8080'; // Base URL
+  private apiUrl = 'http://localhost:8080';
   userText: string = '';
   serverResponse: { [key: string]: string | null } = { api1: null, api2: null, api3: null, api4: null };
-  mcqResponse: any = null;  // To store the MCQ response data
-  opinionativeResponse: any = null; // To store the Opinionative response data
-  factCheckResponse : any = null;
-  completionResponse : any = null;
-  showAnswers: boolean[] = []; // Array to track visibility of each answer (for MCQs)
-  showOpinionativeAnswers: boolean[] = []; // Array to track visibility of each answer (for Opinionative)
+  mcqResponse: any = null;
+  opinionativeResponse: any = null;
+  factCheckResponse: any = null;
+  completionResponse: any = null;
+  showAnswers: boolean[] = [];
+  showOpinionativeAnswers: boolean[] = [];
   showFactCheckAnswers: boolean[] = [];
-  showCompletionAnswers : boolean[] = [];
+  showCompletionAnswers: boolean[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  // Function to clear all responses before making a new request
   private clearResponses(): void {
     this.mcqResponse = null;
     this.opinionativeResponse = null;
@@ -37,148 +36,125 @@ export class GenerateQuestionComponent {
 
   // Function to handle MCQ submission
   submitMCQ(): void {
-    this.clearResponses(); // Clear existing data
-    const token = localStorage.getItem('jwt');  // If using authentication
+    this.clearResponses();
+    const token = localStorage.getItem('jwt');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     });
 
-    const url = `${this.apiUrl}/api/public/mcq`;
+    const url = `${this.apiUrl}/api/v1/generate-mcq`;
 
     this.http.post<any>(url, this.userText, { headers }).subscribe({
       next: (response: any) => {
-        // Assuming the response has the structure { mcqList: [...] }
         this.mcqResponse = response;
         this.initializeAnswerVisibility();
       },
       error: (error: any) => {
         console.error('Error submitting to MCQ:', error);
-        this.mcqResponse = null;  // Clear the MCQ response on error
+        this.mcqResponse = null;
       }
     });
   }
 
   // Function to handle Opinionative submission
   submitOpinionative(): void {
-    this.clearResponses(); // Clear existing data
-    const token = localStorage.getItem('jwt');  // If using authentication
+    this.clearResponses();
+    const token = localStorage.getItem('jwt');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     });
 
-    const url = `${this.apiUrl}/api/public/opinionative`;
+    const url = `${this.apiUrl}/api/v1/generate-opinionative`;
 
     this.http.post<any>(url, this.userText, { headers }).subscribe({
       next: (response: any) => {
-        // The response should have the structure { questionList: [{ question: string, answer: string }, ...] }
-        this.opinionativeResponse = response.questionList; // Store only the question list
-        this.initializeOpinionativeAnswerVisibility(); // Initialize visibility state for opinionative answers
+        this.opinionativeResponse = response.questionList;
+        this.initializeOpinionativeAnswerVisibility();
       },
       error: (error: any) => {
         console.error('Error submitting to Opinionative:', error);
-        this.opinionativeResponse = null;  // Clear the Opinionative response on error
+        this.opinionativeResponse = null;
       }
     });
   }
 
   // Function to handle FactCheck submission
   submitFactCheck(): void {
-    this.clearResponses(); // Clear existing data
-    // FactCheck functionality (add API call and handling here)
-    const token = localStorage.getItem('jwt');  // If using authentication
+    this.clearResponses();
+    const token = localStorage.getItem('jwt');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     });
 
-    const url = `${this.apiUrl}/api/public/factCheck`;
-    // console.log('FactCheck button clicked.');
-    // this.serverResponse['api3'] = 'FactCheck response here...'; // Dummy response for demonstration
-    
+    const url = `${this.apiUrl}/api/v1/generate-factCheck`;
 
     this.http.post<any>(url, this.userText, { headers }).subscribe({
       next: (response: any) => {
-        // The response should have the structure { questionList: [{ question: string, answer: string }, ...] }
-        this.factCheckResponse = response.tfList; // Store only the question list
-        this.initializefactCheckAnswerVisibility(); // Initialize visibility state for opinionative answers
+        this.factCheckResponse = response.tfList;
+        this.initializefactCheckAnswerVisibility();
       },
       error: (error: any) => {
         console.error('Error submitting to FactChek:', error);
-        this.factCheckResponse = null;  // Clear the Opinionative response on error
+        this.factCheckResponse = null;
       }
     });
-  
-  
   }
 
   // Function to handle Completion submission
   submitCompletion(): void {
-    this.clearResponses(); // Clear existing data
-    // FactCheck functionality (add API call and handling here)
-    const token = localStorage.getItem('jwt');  // If using authentication
+    this.clearResponses();
+    const token = localStorage.getItem('jwt');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     });
 
-    const url = `${this.apiUrl}/api/public/completion`;
-    // console.log('FactCheck button clicked.');
-    // this.serverResponse['api3'] = 'FactCheck response here...'; // Dummy response for demonstration
-    
+    const url = `${this.apiUrl}/api/v1/generate-completion`;
 
     this.http.post<any>(url, this.userText, { headers }).subscribe({
       next: (response: any) => {
-        // The response should have the structure { questionList: [{ question: string, answer: string }, ...] }
-        this.completionResponse = response.scList; // Store only the question list
-        this.initializeCompletionAnswerVisibility(); // Initialize visibility state for opinionative answers
+        this.completionResponse = response.scList;
+        this.initializeCompletionAnswerVisibility();
       },
       error: (error: any) => {
         console.error('Error submitting to FactChek:', error);
-        this.completionResponse = null;  // Clear the Opinionative response on error
+        this.completionResponse = null;
       }
     });
   }
 
-  // Initialize the answer visibility array based on the number of MCQs
   private initializeAnswerVisibility(): void {
     if (this.mcqResponse && this.mcqResponse.mcqList) {
       this.showAnswers = new Array(this.mcqResponse.mcqList.length).fill(false);
     }
   }
 
-  // Toggle the visibility of the correct answer for each MCQ
   toggleAnswerVisibility(index: number): void {
     this.showAnswers[index] = !this.showAnswers[index];
   }
 
-  // Initialize the answer visibility array based on the number of opinionative questions
   private initializeOpinionativeAnswerVisibility(): void {
     if (this.opinionativeResponse) {
       this.showOpinionativeAnswers = new Array(this.opinionativeResponse.length).fill(false);
     }
   }
 
-  // Toggle the visibility of the answer for each opinionative question
   toggleOpinionativeAnswerVisibility(index: number): void {
     this.showOpinionativeAnswers[index] = !this.showOpinionativeAnswers[index];
   }
 
-   // Initialize the answer visibility array based on the number of opinionative questions
-   private initializefactCheckAnswerVisibility(): void {
+  private initializefactCheckAnswerVisibility(): void {
     if (this.factCheckResponse) {
       this.showFactCheckAnswers = new Array(this.factCheckResponse.length).fill(false);
     }
   }
 
-  // Toggle the visibility of the answer for each opinionative question
   togglefactCheckAnswerVisibility(index: number): void {
     this.showFactCheckAnswers[index] = !this.showFactCheckAnswers[index];
   }
-
-   // Initialize the answer visibility array based on the number of opinionative questions
-   
 
   private initializeCompletionAnswerVisibility(): void {
     if (this.completionResponse) {
@@ -186,7 +162,6 @@ export class GenerateQuestionComponent {
     }
   }
 
-  // Toggle the visibility of the answer for each opinionative question
   togglecompletionAnswerVisibility(index: number): void {
     this.showCompletionAnswers[index] = !this.showCompletionAnswers[index];
   }
