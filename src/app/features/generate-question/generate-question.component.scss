@@ -1,0 +1,86 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px; /* Adds space between buttons */
+    margin-bottom: 20px;
+  }
+  
+  .button-group button {
+    flex: 1; /* Ensures buttons are evenly spaced */
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-group button:hover {
+    background-color: #0056b3;
+  }
+  
+  .response-display-box {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .response-display-box h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .response-display-box p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+  }
+  
+  /* MCQ styling */
+  .mcq-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f0f8ff; /* Light blue background for contrast */
+    border-radius: 5px;
+  }
+  
+  .mcq-item strong {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  hr {
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+  }
+  
+  /* Opinionative styling */
+  .opinionative-item, .fact-check-item, .completion-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f0f8ff;
+    border-radius: 5px;
+  }
