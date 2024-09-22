@@ -34,6 +34,6 @@ export class QuickPracticeAnswerComponent implements OnInit {
   }
 
   startQuickPracticeAgain(): void {
-    this.router.navigate(['/feature/quick-practice']);
+    this.router.navigate(['/quick-test']);
   }
 }

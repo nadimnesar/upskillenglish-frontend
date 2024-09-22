@@ -1,7 +1,7 @@
 <section>
     <div class="container">
         <div class="headtext">
-            <h1>Generate Passage</h1>
+            <h1>Passage Learning Lab</h1>
         </div>
 
         <div class="loader" *ngIf="loading"></div>
@@ -27,8 +27,8 @@
                         {{ limit }} words
                     </option>
                 </select>
-                <button *ngIf="passage" class="new-passage-button" (click)="getNewPassage()">New Passage</button>
-                <button *ngIf="passage" class="copy-button" (click)="copyPassage()">Copy Passage</button>
+                <button *ngIf="passage" class="return-home-button" (click)="getNewPassage()">New Passage</button>
+                <button *ngIf="passage" class="return-home-button" (click)="copyPassage()">Copy Passage</button>
                 <button class="return-home-button" (click)="goHome()">Return to Home</button>
             </div>
         </div>

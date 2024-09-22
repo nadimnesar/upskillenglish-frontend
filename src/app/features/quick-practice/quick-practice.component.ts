@@ -103,7 +103,7 @@ export class QuickPracticeComponent implements OnInit {
           console.log('Submission successful', response);
           const responseAnswerList: any[] = response.responseQuestionList;
           localStorage.setItem('responseAnswerList', JSON.stringify(responseAnswerList));
-          this.router.navigate(['/feature/quick-practice/answer']);
+          this.router.navigate(['/quick-test/answer']);
         },
         error: (error: any) => {
           console.error('Submission failed', error);

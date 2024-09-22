@@ -19,6 +19,10 @@ import { QuickPracticeAnswerComponent } from './features/quick-practice/quick-pr
 import { GeneratePassageComponent } from './features/generate-passage/generate-passage.component';
 import { GenerateQuestionComponent } from './features/generate-question/generate-question.component';
 import { ImproveListeningComponent } from './features/improve-listening/improve-listening.component';
+import { ReadingTestComponent } from './features/reading-test/reading-test.component';
+import { WritingTestComponent } from './features/writing-test/writing-test.component';
+import { ListeningTestComponent } from './features/listening-test/listening-test.component';
+import { ThreeInOneTestComponent } from './features/three-in-one-test/three-in-one-test.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ import { ImproveListeningComponent } from './features/improve-listening/improve-
     QuickPracticeAnswerComponent,
     GeneratePassageComponent,
     GenerateQuestionComponent,
-    ImproveListeningComponent
+    ImproveListeningComponent,
+    ReadingTestComponent,
+    WritingTestComponent,
+    ListeningTestComponent,
+    ThreeInOneTestComponent
   ],
   imports: [
     BrowserModule,
