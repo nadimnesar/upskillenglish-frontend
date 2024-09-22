@@ -11,7 +11,7 @@
                 <audio controls [src]="audioSrc"></audio>
             </div>
 
-            <button class="view-text-button" (click)="toggleViewText()">
+            <button *ngIf="showText" class="view-text-button" (click)="toggleViewText()">
                 {{ showText ? 'Hide Text' : 'View Text' }}
             </button>
 

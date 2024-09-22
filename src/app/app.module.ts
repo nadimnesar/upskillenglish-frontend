@@ -23,6 +23,7 @@ import { ReadingTestComponent } from './features/reading-test/reading-test.compo
 import { WritingTestComponent } from './features/writing-test/writing-test.component';
 import { ListeningTestComponent } from './features/listening-test/listening-test.component';
 import { ThreeInOneTestComponent } from './features/three-in-one-test/three-in-one-test.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ThreeInOneTestComponent } from './features/three-in-one-test/three-in-o
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxChartsModule
   ],
   providers: [provideHttpClient(withInterceptorsFromDi()), provideAnimationsAsync()],
   bootstrap: [AppComponent]
