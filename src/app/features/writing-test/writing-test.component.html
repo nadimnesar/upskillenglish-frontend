@@ -9,6 +9,7 @@
     <div *ngIf="!loading">
       <!-- Pie chart section -->
       <div *ngIf="!essaySectionVisible">
+        <h1>Part - 1</h1>
         <div class="chart-container">
           <div class="card pie-chart">
             <h3>{{ year1Label }}</h3>
@@ -39,6 +40,7 @@
 
       <!-- Essay section -->
       <div *ngIf="essaySectionVisible">
+        <h1>Part - 2</h1>
         <div class="essay-section card">
           <h3>Essay Topic</h3>
           <p class="essay-topic">{{ essayTopic }}</p>
