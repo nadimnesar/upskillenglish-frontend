@@ -17,20 +17,114 @@ import { ListeningTestComponent } from './features/listening-test/listening-test
 import { ThreeInOneTestComponent } from './features/three-in-one-test/three-in-one-test.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'leaderboard', component: LeaderboardComponent },
-  { path: 'quick-test', component: QuickPracticeComponent, canActivate: [AuthGuard] },
-  { path: 'improve-writing', component: ImproveWritingComponent, canActivate: [AuthGuard] },
-  { path: 'quick-test/answer', component: QuickPracticeAnswerComponent, canActivate: [AuthGuard] },
-  { path: 'passage-learning-lab', component: GeneratePassageComponent, canActivate: [AuthGuard] },
-  { path: 'improve-listening', component: ImproveListeningComponent, canActivate: [AuthGuard] },
-  { path: 'question-practicing-hub', component: GenerateQuestionComponent, canActivate: [AuthGuard] },
-  { path: 'reading-test', component: ReadingTestComponent, canActivate: [AuthGuard] },
-  { path: 'writing-test', component: WritingTestComponent, canActivate: [AuthGuard] },
-  { path: 'listening-test', component: ListeningTestComponent, canActivate: [AuthGuard] },
-  { path: 'three-in-one-test', component: ThreeInOneTestComponent, canActivate: [AuthGuard] }
+  {
+    path: '',
+    component: HomeComponent,
+    data: {
+      title: 'UpskillEnglish | AI-powered English Skill Enhancer'
+    }
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {
+      title: 'UpskillEnglish | Login'
+    }
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
+    data: {
+      title: 'UpskillEnglish | Signup'
+    }
+  },
+  {
+    path: 'leaderboard',
+    component: LeaderboardComponent,
+    data: {
+      title: 'UpskillEnglish | Leaderboard'
+    }
+  },
+  {
+    path: 'quick-test',
+    component: QuickPracticeComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'UpskillEnglish | Quick Test'
+    }
+  },
+  {
+    path: 'improve-writing',
+    component: ImproveWritingComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'UpskillEnglish | Improve Writing'
+    }
+  },
+  {
+    path: 'quick-test/answer',
+    component: QuickPracticeAnswerComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'UpskillEnglish | Quick Test | Answer'
+    }
+  },
+  {
+    path: 'passage-learning-lab',
+    component: GeneratePassageComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'UpskillEnglish | Passage Learning Lab'
+    }
+  },
+  {
+    path: 'improve-listening',
+    component: ImproveListeningComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'UpskillEnglish | Improve Listening'
+    }
+  },
+  {
+    path: 'question-practicing-hub',
+    component: GenerateQuestionComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'UpskillEnglish | Question Practicing Hub'
+    }
+  },
+  {
+    path: 'reading-test',
+    component: ReadingTestComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'UpskillEnglish | Reading Test'
+    }
+  },
+  {
+    path: 'writing-test',
+    component: WritingTestComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'UpskillEnglish | Writing Test'
+    }
+  },
+  {
+    path: 'listening-test',
+    component: ListeningTestComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'UpskillEnglish | Listening Test'
+    }
+  },
+  {
+    path: 'three-in-one-test',
+    component: ThreeInOneTestComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'UpskillEnglish | Three in One Test'
+    }
+  }
 ];
 
 @NgModule({
