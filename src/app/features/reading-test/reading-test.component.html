@@ -1,1 +1,57 @@
-<p>reading-test works!</p>
+<section>
+    <div class="container">
+      <div class="headtext">
+        <h1 style="font-size: 20px;">Please read the passage carefully and respond to the following questions.</h1>
+      </div>
+  
+      <!-- Passage Display -->
+      <div class="passage">
+        <p *ngIf="passage">{{ passage }}</p>
+        <p *ngIf="!passage">Loading passage...</p> <!-- Fallback message -->
+      </div>
+  
+      <!-- MCQ Questions -->
+      <div class="card response-display-box" *ngIf="mcqResponse?.mcqList?.length">
+        <h3>MCQ</h3>
+        <div *ngFor="let mcq of mcqResponse.mcqList; let i = index" class="item">
+          <p><strong>Question {{ i + 1 }}:</strong> {{ mcq.question }}</p>
+          <div class="options">
+            <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="A"> {{ mcq.optionA }}</label><br>
+            <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="B"> {{ mcq.optionB }}</label><br>
+            <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="C"> {{ mcq.optionC }}</label><br>
+            <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="D"> {{ mcq.optionD }}</label>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Opinionative Questions -->
+      <div class="card response-display-box" *ngIf="opinionativeResponse?.questionList?.length">
+        <h3>What's Your Opinion?</h3>
+        <div *ngFor="let question of opinionativeResponse.questionList; let i = index" class="item">
+          <p><strong>Question {{ i + 1 }}:</strong> {{ question.question }}</p>
+          <div class="options">
+            <label><input type="radio" name="opinionative{{ i }}" [(ngModel)]="opinionativeSelected[i]" value="Yes"> Yes</label><br>
+            <label><input type="radio" name="opinionative{{ i }}" [(ngModel)]="opinionativeSelected[i]" value="No"> No</label>
+          </div>
+        </div>
+      </div>
+  
+      <!-- FactCheck Questions -->
+      <div class="card response-display-box" *ngIf="factCheckResponse?.tfList?.length">
+        <h3>Check Fact</h3>
+        <div *ngFor="let factCheck of factCheckResponse.tfList; let i = index" class="item">
+          <p><strong>Question {{ i + 1 }}:</strong> {{ factCheck.question }}</p>
+          <div class="options">
+            <label><input type="radio" name="factCheck{{ i }}" [(ngModel)]="factCheckSelected[i]" value="True"> True</label><br>
+            <label><input type="radio" name="factCheck{{ i }}" [(ngModel)]="factCheckSelected[i]" value="False"> False</label>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Submission Button -->
+      <!-- <div class="submission">
+        <button (click)="submitAnswers()">Submit Answers</button>
+      </div> -->
+    </div>
+  </section>
+  
