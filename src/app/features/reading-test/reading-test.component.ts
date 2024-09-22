@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-reading-test',
@@ -15,13 +16,15 @@ export class ReadingTestComponent implements OnInit {
   mcqSelected: string[] = [];
   opinionativeSelected: string[] = [];
   factCheckSelected: string[] = [];
+  totalScore: number | null = null;
 
   private apiUrl = 'http://localhost:8080';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.loadTest();
+    this.totalScore = 0;
   }
 
   loadTest(): void {
@@ -30,13 +33,65 @@ export class ReadingTestComponent implements OnInit {
       'Content-Type': 'application/json'
     });
 
-    // Sample API Call for fetching test data
-    this.http.get<any>(`${this.apiUrl}/api/public/v2/generate-passage`, { headers }).subscribe(response => {
+    this.http.get<any>(`${this.apiUrl}/api/v2/generate-passage`, { headers }).subscribe(response => {
       this.passage = response.passage.passage;
-      //console.log(this.passage);
       this.mcqResponse = response.mcq;
       this.opinionativeResponse = response.opinionative;
       this.factCheckResponse = response.factCheck;
     });
+  }
+
+  submitAnswers(): void {
+    let score = 0;
+
+    // Calculate MCQ score
+    if (this.mcqResponse?.mcqList) {
+      this.mcqResponse.mcqList.forEach((mcq: any, index: number) => {
+        if (this.mcqSelected[index] === mcq.answer) {
+          console.log("mcq score added");
+          score++;
+        }
+      });
+    }
+
+    // Calculate Opinionative score (assuming Yes/No type, but scoring logic can vary)
+    if (this.opinionativeResponse?.questionList) {
+      this.opinionativeResponse.questionList.forEach((question: any, index: number) => {
+        if (this.opinionativeSelected[index] === question.answer) {
+          console.log("Opinionative score added");
+          score++;
+        }
+      });
+    }
+
+    // Calculate FactCheck score
+    if (this.factCheckResponse?.tfList) {
+      this.factCheckResponse.tfList.forEach((factCheck: any, index: number) => {
+        if (this.factCheckSelected[index] === factCheck.answer) {
+          console.log("FactCheck score added");
+          score++;
+        }
+      });
+    }
+
+    this.totalScore = score;
+
+    this.updateScore().subscribe({
+      error: (error: any) => {
+        console.error('Error updaing score:', error);
+      },
+      complete: () => {
+        console.log('Score update done!');
+      }
+    });
+  }
+
+  updateScore(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post<any>(`${this.apiUrl}/api/v1/updateScore?score=${this.totalScore}`, {}, { headers });
   }
 }
