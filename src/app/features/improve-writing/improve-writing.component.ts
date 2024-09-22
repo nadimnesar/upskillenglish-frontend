@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../environment';
 
 @Component({
   selector: 'app-improve-writing',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImproveWritingComponent implements OnInit {
 
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = environment.backendUrl + '/api';
   topicList: any[] = [];
   selectedTopic: string = '';
   userResponse: string = '';

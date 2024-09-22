@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { environment } from '../../environment';
 
 @Component({
   selector: 'app-improve-listening',
@@ -16,7 +17,7 @@ export class ImproveListeningComponent {
 
   @ViewChild('audioPlayer') audioPlayer!: ElementRef<HTMLAudioElement>;
 
-  private apiUrl = 'http://localhost:8080/api/v1';
+  private apiUrl = environment.backendUrl + '/api/v1';
   private token = localStorage.getItem('jwt') || '';
 
   constructor(private http: HttpClient) { }

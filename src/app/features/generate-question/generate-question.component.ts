@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { environment } from '../../environment';
 
 @Component({
   selector: 'app-generate-question',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class GenerateQuestionComponent {
 
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = environment.backendUrl;
   userText: string = '';
   serverResponse: { [key: string]: string | null } = { api1: null, api2: null, api3: null, api4: null };
   mcqResponse: any = null;

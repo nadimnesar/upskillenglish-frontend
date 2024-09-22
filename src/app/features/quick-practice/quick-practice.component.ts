@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../../environment';
 
 @Component({
   selector: 'app-quick-practice',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class QuickPracticeComponent implements OnInit {
 
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = environment.backendUrl + '/api';
   questionList: any[] = [];
   loading: boolean = true;
   minutes: number = 5;

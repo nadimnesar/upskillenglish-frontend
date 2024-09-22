@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '../../environment';
 
 @Component({
   selector: 'app-generate-passage',
@@ -15,7 +16,7 @@ export class GeneratePassageComponent implements OnInit {
   selectedWordLimit: number = 250;
   wordLimits: number[] = [100, 250, 500, 1000];
 
-  private apiUrl = 'http://localhost:8080/api/v1';
+  private apiUrl = environment.backendUrl + '/api/v1';
   private token = localStorage.getItem('jwt') || '';
 
   constructor(private http: HttpClient, private router: Router) { }
