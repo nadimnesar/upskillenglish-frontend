@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, of } from 'rxjs';
+import { environment } from '../../environment';
 
 @Component({
   selector: 'app-leaderboard',
@@ -15,7 +16,7 @@ export class LeaderboardComponent implements OnInit {
   pageSize: number = 10;
   totalUsers: number = 0;
 
-  private apiUrl = 'http://localhost:8080/api/public/v1/get-all-user';
+  private apiUrl = environment.backendUrl + '/api/public/v1/get-all-user';
 
   constructor(private http: HttpClient) { }
 
