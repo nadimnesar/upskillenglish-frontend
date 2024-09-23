@@ -16,7 +16,14 @@ export class ReadingTestComponent implements OnInit {
   mcqSelected: string[] = [];
   opinionativeSelected: string[] = [];
   factCheckSelected: string[] = [];
-  totalScore: number | null = null;
+  totalScore: number | null = 0;
+
+  part2Visible = false; 
+  passageList: string[] = [];
+  matchingInfoResponse: any = null;
+  matchingSelected: string[] = [];
+  finalScore: number | null = null;
+  passageStringList: string[] = [];
 
   private apiUrl = 'http://localhost:8080';
 
@@ -24,7 +31,6 @@ export class ReadingTestComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTest();
-    this.totalScore = 0;
   }
 
   loadTest(): void {
@@ -44,31 +50,25 @@ export class ReadingTestComponent implements OnInit {
   submitAnswers(): void {
     let score = 0;
 
-    // Calculate MCQ score
     if (this.mcqResponse?.mcqList) {
       this.mcqResponse.mcqList.forEach((mcq: any, index: number) => {
         if (this.mcqSelected[index] === mcq.answer) {
-          console.log("mcq score added");
           score++;
         }
       });
     }
 
-    // Calculate Opinionative score (assuming Yes/No type, but scoring logic can vary)
     if (this.opinionativeResponse?.questionList) {
       this.opinionativeResponse.questionList.forEach((question: any, index: number) => {
         if (this.opinionativeSelected[index] === question.answer) {
-          console.log("Opinionative score added");
           score++;
         }
       });
     }
 
-    // Calculate FactCheck score
     if (this.factCheckResponse?.tfList) {
       this.factCheckResponse.tfList.forEach((factCheck: any, index: number) => {
         if (this.factCheckSelected[index] === factCheck.answer) {
-          console.log("FactCheck score added");
           score++;
         }
       });
@@ -76,6 +76,39 @@ export class ReadingTestComponent implements OnInit {
 
     this.totalScore = score;
 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+      'Content-Type': 'application/json'
+    });
+
+    this.http.post<any>(`${this.apiUrl}/api/v1/generate-matching`, this.passage, { headers })
+      .subscribe(response => {
+        this.passageList = response.passages.psList.map((p: any) => `${p.A}, ${p.B}, ${p.C}, ${p.D}, ${p.E}`);
+        const firstdPassageObject = response.passages.psList[0];  // Access the second object in psList
+        
+        this.passageStringList.push(firstdPassageObject.A);
+        this.passageStringList.push(firstdPassageObject.B);
+        this.passageStringList.push(firstdPassageObject.C);
+        this.passageStringList.push(firstdPassageObject.D);
+        this.passageStringList.push(firstdPassageObject.E);
+
+        this.matchingInfoResponse = response.matchingInfo;
+        this.part2Visible = true;
+      });
+  }
+
+  submitMatchingAnswers(): void {
+    let matchingScore = 0;
+
+    if (this.matchingInfoResponse?.infoList) {
+      this.matchingInfoResponse.infoList.forEach((info: any, index: number) => {
+        if (this.matchingSelected[index] === info.serial) {
+          matchingScore+=2;
+        }
+      });
+    }
+
+    this.finalScore = (this.totalScore || 0) + matchingScore;
     this.updateScore().subscribe({
       error: (error: any) => {
         console.error('Error updaing score:', error);
@@ -92,6 +125,6 @@ export class ReadingTestComponent implements OnInit {
       'Content-Type': 'application/json'
     });
 
-    return this.http.post<any>(`${this.apiUrl}/api/v1/updateScore?score=${this.totalScore}`, {}, { headers });
+    return this.http.post<any>(`${this.apiUrl}/api/v1/updateScore?score=${this.finalScore}`, {}, { headers });
   }
 }
