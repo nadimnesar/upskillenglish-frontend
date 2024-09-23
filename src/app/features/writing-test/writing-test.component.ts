@@ -37,7 +37,7 @@ export class WritingTestComponent implements OnInit {
   apiUrl: string = environment.backendUrl + '/api';
   view: [number, number] = [350, 350];
 
-  minutes: number = 1;
+  minutes: number = 30;
   seconds: number = 0;
   countdownInterval: any;
 
