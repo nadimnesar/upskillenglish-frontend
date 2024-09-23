@@ -54,7 +54,6 @@ export class QuickPracticeComponent implements OnInit {
     this.countdownInterval = setInterval(() => {
       if (this.seconds === 0) {
         if (this.minutes === 0) {
-          this.submitForm();
           clearInterval(this.countdownInterval);
           this.router.navigate(['/']);
         } else {

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environment';
+import { Router } from '@angular/router';
 
 interface SolutionDto {
   question: string;
@@ -36,7 +37,11 @@ export class WritingTestComponent implements OnInit {
   apiUrl: string = environment.backendUrl + '/api';
   view: [number, number] = [350, 350];
 
-  constructor(private http: HttpClient) { }
+  minutes: number = 1;
+  seconds: number = 0;
+  countdownInterval: any;
+
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchGraph();
@@ -73,6 +78,7 @@ export class WritingTestComponent implements OnInit {
       },
       complete: () => {
         this.loading = false;
+        this.startCountdown();
       },
     });
   }
@@ -145,9 +151,25 @@ export class WritingTestComponent implements OnInit {
     });
   }
 
+  startCountdown(): void {
+    this.countdownInterval = setInterval(() => {
+      if (this.seconds === 0) {
+        if (this.minutes === 0) {
+          clearInterval(this.countdownInterval);
+          this.router.navigate(['/']);
+        } else {
+          this.minutes--;
+          this.seconds = 59;
+        }
+      } else {
+        this.seconds--;
+      }
+    }, 1000);
+  }
+
   redirectToHome(): void {
     setTimeout(() => {
       window.location.href = '/';
-    }, 5000);
+    }, 3000);
   }
 }

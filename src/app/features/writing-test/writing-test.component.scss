@@ -164,3 +164,13 @@ section {
         transform: rotate(360deg);
     }
 }
+
+.countdown {
+    position: fixed;
+    top: 100px;
+    right: 50px;
+    z-index: 999;
+    color: red;
+    padding: 25px;
+    font-size: 2rem;
+}

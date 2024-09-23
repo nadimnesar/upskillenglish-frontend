@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { environment } from '../../environment';
 
 @Component({
   selector: 'app-reading-test',
@@ -18,19 +20,39 @@ export class ReadingTestComponent implements OnInit {
   factCheckSelected: string[] = [];
   totalScore: number | null = 0;
 
-  part2Visible = false; 
+  part2Visible = false;
   passageList: string[] = [];
   matchingInfoResponse: any = null;
   matchingSelected: string[] = [];
   finalScore: number | null = null;
   passageStringList: string[] = [];
 
-  private apiUrl = 'http://localhost:8080';
+  minutes: number = 25;
+  seconds: number = 0;
+  countdownInterval: any;
 
-  constructor(private http: HttpClient) { }
+  private apiUrl = environment.backendUrl;
+
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     this.loadTest();
+  }
+
+  startCountdown(): void {
+    this.countdownInterval = setInterval(() => {
+      if (this.seconds === 0) {
+        if (this.minutes === 0) {
+          clearInterval(this.countdownInterval);
+          this.router.navigate(['/']);
+        } else {
+          this.minutes--;
+          this.seconds = 59;
+        }
+      } else {
+        this.seconds--;
+      }
+    }, 1000);
   }
 
   loadTest(): void {
@@ -44,6 +66,7 @@ export class ReadingTestComponent implements OnInit {
       this.mcqResponse = response.mcq;
       this.opinionativeResponse = response.opinionative;
       this.factCheckResponse = response.factCheck;
+      this.startCountdown();
     });
   }
 
@@ -75,7 +98,10 @@ export class ReadingTestComponent implements OnInit {
     }
 
     this.totalScore = score;
+    this.loadMatching();
+  }
 
+  loadMatching(): void {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       'Content-Type': 'application/json'
@@ -85,7 +111,7 @@ export class ReadingTestComponent implements OnInit {
       .subscribe(response => {
         this.passageList = response.passages.psList.map((p: any) => `${p.A}, ${p.B}, ${p.C}, ${p.D}, ${p.E}`);
         const firstdPassageObject = response.passages.psList[0];  // Access the second object in psList
-        
+
         this.passageStringList.push(firstdPassageObject.A);
         this.passageStringList.push(firstdPassageObject.B);
         this.passageStringList.push(firstdPassageObject.C);
@@ -103,7 +129,7 @@ export class ReadingTestComponent implements OnInit {
     if (this.matchingInfoResponse?.infoList) {
       this.matchingInfoResponse.infoList.forEach((info: any, index: number) => {
         if (this.matchingSelected[index] === info.serial) {
-          matchingScore+=2;
+          matchingScore += 2;
         }
       });
     }
@@ -115,6 +141,7 @@ export class ReadingTestComponent implements OnInit {
       },
       complete: () => {
         console.log('Score update done!');
+        this.redirectToHome();
       }
     });
   }
@@ -126,5 +153,11 @@ export class ReadingTestComponent implements OnInit {
     });
 
     return this.http.post<any>(`${this.apiUrl}/api/v1/updateScore?score=${this.finalScore}`, {}, { headers });
+  }
+
+  redirectToHome(): void {
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 3000);
   }
 }

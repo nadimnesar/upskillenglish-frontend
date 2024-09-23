@@ -22,10 +22,14 @@
         <div *ngFor="let mcq of mcqResponse.mcqList; let i = index" class="item">
           <p><strong>Question {{ i + 1 }}:</strong> {{ mcq.question }}</p>
           <div class="options">
-            <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="a"> {{ mcq.optionA }}</label><br>
-            <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="b"> {{ mcq.optionB }}</label><br>
-            <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="c"> {{ mcq.optionC }}</label><br>
-            <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="d"> {{ mcq.optionD }}</label>
+            <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="a"> {{ mcq.optionA
+              }}</label><br>
+            <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="b"> {{ mcq.optionB
+              }}</label><br>
+            <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="c"> {{ mcq.optionC
+              }}</label><br>
+            <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="d"> {{ mcq.optionD
+              }}</label>
           </div>
         </div>
       </div>
@@ -35,8 +39,10 @@
         <div *ngFor="let question of opinionativeResponse.questionList; let i = index" class="item">
           <p><strong>Question {{ i + 1 }}:</strong> {{ question.question }}</p>
           <div class="options">
-            <label><input type="radio" name="opinionative{{ i }}" [(ngModel)]="opinionativeSelected[i]" value="Yes"> Yes</label><br>
-            <label><input type="radio" name="opinionative{{ i }}" [(ngModel)]="opinionativeSelected[i]" value="No"> No</label>
+            <label><input type="radio" name="opinionative{{ i }}" [(ngModel)]="opinionativeSelected[i]" value="Yes">
+              Yes</label><br>
+            <label><input type="radio" name="opinionative{{ i }}" [(ngModel)]="opinionativeSelected[i]" value="No">
+              No</label>
           </div>
         </div>
       </div>
@@ -46,8 +52,10 @@
         <div *ngFor="let factCheck of factCheckResponse.tfList; let i = index" class="item">
           <p><strong>Question {{ i + 1 }}:</strong> {{ factCheck.question }}</p>
           <div class="options">
-            <label><input type="radio" name="factCheck{{ i }}" [(ngModel)]="factCheckSelected[i]" value="true"> True</label><br>
-            <label><input type="radio" name="factCheck{{ i }}" [(ngModel)]="factCheckSelected[i]" value="false"> False</label>
+            <label><input type="radio" name="factCheck{{ i }}" [(ngModel)]="factCheckSelected[i]" value="true">
+              True</label><br>
+            <label><input type="radio" name="factCheck{{ i }}" [(ngModel)]="factCheckSelected[i]" value="false">
+              False</label>
           </div>
         </div>
       </div>
@@ -87,5 +95,7 @@
     <div *ngIf="finalScore !== null" style="margin-top: 40px;">
       <h3>Your Final Score: {{ finalScore }}</h3>
     </div>
+
+    <div *ngIf="passage" class="countdown"> {{ minutes }}:{{ seconds }} </div>
   </div>
 </section>
