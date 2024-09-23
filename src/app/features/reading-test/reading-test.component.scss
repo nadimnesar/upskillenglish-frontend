@@ -30,6 +30,22 @@ section {
   max-width: 800px;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h1 {
+    font-size: 25px;
+  }
+}
+
+.instruction {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
 .passage {
   background-color: $card-bg;
   border: 1px solid $card-border;
@@ -76,12 +92,14 @@ section {
 
   .submit-button {
     background-color: $button-bg;
-    color: white;
+    color: #fff;
     border: none;
+    border-radius: 5px;
     padding: 10px 20px;
-    border-radius: $border-radius;
-    font-size: 1rem;
+    font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: flex-end;
 
     &:hover {
       background-color: $button-hover-bg;
