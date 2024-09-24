@@ -75,5 +75,7 @@
         <h3>Your Final Score: {{ totalScore }}</h3>
       </div>
     </div>
+
+    <div *ngIf="!loading" class="countdown"> {{ minutes }}:{{ seconds }} </div>
   </div>
 </section>

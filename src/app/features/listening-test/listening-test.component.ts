@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { environment } from '../../environment';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listening-test',
@@ -31,12 +32,16 @@ export class ListeningTestComponent {
   matchingSelected: string[] = [];
   finalScore: number | null = null;
 
+  minutes: number = 15;
+  seconds: number = 0;
+  countdownInterval: any;
+
   @ViewChild('audioPlayer') audioPlayer!: ElementRef<HTMLAudioElement>;
 
   private apiUrl = environment.backendUrl + '/api/v1';
   private token = localStorage.getItem('jwt') || '';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     this.generateListeningText();
@@ -74,6 +79,7 @@ export class ListeningTestComponent {
         next: response => {
           const audioBlob = new Blob([response], { type: 'audio/mp3' });
           this.audioSrc = URL.createObjectURL(audioBlob);
+          this.startCountdown();
           this.loading = false;
         },
         error: error => {
@@ -155,6 +161,22 @@ export class ListeningTestComponent {
     });
 
     return this.http.post<any>(`${this.apiUrl}/updateScore?score=${this.totalScore}`, {}, { headers });
+  }
+
+  startCountdown(): void {
+    this.countdownInterval = setInterval(() => {
+      if (this.seconds === 0) {
+        if (this.minutes === 0) {
+          clearInterval(this.countdownInterval);
+          this.router.navigate(['/']);
+        } else {
+          this.minutes--;
+          this.seconds = 59;
+        }
+      } else {
+        this.seconds--;
+      }
+    }, 1000);
   }
 
   redirectToHome(): void {
