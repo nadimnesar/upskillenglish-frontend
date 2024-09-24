@@ -2,7 +2,7 @@
 @include mat.core();
 @import "bootstrap/scss/bootstrap";
 
-$frontend-theme: mat.define-theme((color: (theme-type: light,
+$upskillenglish-frontend-theme: mat.define-theme((color: (theme-type: light,
         primary: mat.$azure-palette,
         tertiary: mat.$blue-palette,
       ),
@@ -10,7 +10,7 @@ $frontend-theme: mat.define-theme((color: (theme-type: light,
       )));
 
 :root {
-  @include mat.all-component-themes($frontend-theme);
+  @include mat.all-component-themes($upskillenglish-frontend-theme);
 }
 
 $body-bg-color: #FDFDFD;
