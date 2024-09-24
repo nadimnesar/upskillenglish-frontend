@@ -22,8 +22,8 @@ import { ImproveListeningComponent } from './features/improve-listening/improve-
 import { ReadingTestComponent } from './features/reading-test/reading-test.component';
 import { WritingTestComponent } from './features/writing-test/writing-test.component';
 import { ListeningTestComponent } from './features/listening-test/listening-test.component';
-import { ThreeInOneTestComponent } from './features/three-in-one-test/three-in-one-test.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -42,15 +42,15 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     ImproveListeningComponent,
     ReadingTestComponent,
     WritingTestComponent,
-    ListeningTestComponent,
-    ThreeInOneTestComponent
+    ListeningTestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    RouterModule
   ],
   providers: [provideHttpClient(withInterceptorsFromDi()), provideAnimationsAsync()],
   bootstrap: [AppComponent]

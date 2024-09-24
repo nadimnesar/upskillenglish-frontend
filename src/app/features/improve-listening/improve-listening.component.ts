@@ -39,7 +39,6 @@ export class ImproveListeningComponent {
         },
         error: error => {
           console.error('Error generating text:', error);
-          this.loading = false;
         }
       });
   }
@@ -61,7 +60,6 @@ export class ImproveListeningComponent {
         },
         error: error => {
           console.error('Error generating audio:', error);
-          this.loading = false;
         }
       });
   }

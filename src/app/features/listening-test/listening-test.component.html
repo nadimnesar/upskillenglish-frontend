@@ -1,9 +1,12 @@
 <section>
-    <div class="container">
-      <div class="headtext">
-        <h1>Listening Test</h1>
-      </div>
-  
+  <div class="container">
+    <div class="headtext">
+      <h1>Listening Test</h1>
+    </div>
+
+    <div class="loader" *ngIf="loading"></div>
+
+    <div *ngIf="!loading">
       <div class="audio-section">
         <h3>Listen to the following audio:</h3>
         <audio #audioPlayer controls [src]="audioSrc"></audio>
@@ -33,7 +36,7 @@
           </div>
         </div>
       </div>
-  
+
       <div class="response-display-box card" *ngIf="opinionativeResponse?.questionList?.length">
         <h3>What's Your Opinion?</h3>
         <div *ngFor="let question of opinionativeResponse.questionList; let i = index" class="item">
@@ -67,10 +70,10 @@
       <div class="submission">
         <button (click)="submitAnswers()" class="submit-button">Submit Answers</button>
       </div>
-  
+
       <div *ngIf="scoreFlag==true" class="score-display">
         <h3>Your Final Score: {{ totalScore }}</h3>
       </div>
     </div>
-  </section>
-  
+  </div>
+</section>

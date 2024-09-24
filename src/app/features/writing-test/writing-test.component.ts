@@ -72,13 +72,14 @@ export class WritingTestComponent implements OnInit {
         this.year2Label = chartData.year2Label;
         this.writingPrompt = chartData.writingPrompt;
         this.correctAnswer = chartData.correctAnswer;
+        this.loading = false;
+        this.startCountdown();
       },
       error: (error: any) => {
         console.error('Error fetching graph:', error);
       },
       complete: () => {
-        this.loading = false;
-        this.startCountdown();
+        console.info('Fetching graph requst completed');
       },
     });
   }

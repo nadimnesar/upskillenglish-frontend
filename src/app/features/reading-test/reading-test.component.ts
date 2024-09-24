@@ -27,6 +27,8 @@ export class ReadingTestComponent implements OnInit {
   finalScore: number | null = null;
   passageStringList: string[] = [];
 
+  loading: boolean = true;
+
   minutes: number = 25;
   seconds: number = 0;
   countdownInterval: any;
@@ -66,6 +68,7 @@ export class ReadingTestComponent implements OnInit {
       this.mcqResponse = response.mcq;
       this.opinionativeResponse = response.opinionative;
       this.factCheckResponse = response.factCheck;
+      this.loading = false;
       this.startCountdown();
     });
   }

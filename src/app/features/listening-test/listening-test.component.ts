@@ -57,7 +57,6 @@ export class ListeningTestComponent {
         },
         error: error => {
           console.error('Error generating text:', error);
-          this.loading = false;
         }
       });
   }
@@ -79,42 +78,36 @@ export class ListeningTestComponent {
         },
         error: error => {
           console.error('Error generating audio:', error);
-          this.loading = false;
         }
       });
   }
 
   private generateQuestions(): void {
     if (!this.listeningText) return;
-    
+
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.token}`,
       'Content-Type': 'application/json'
     });
-  
+
     this.http.post<{ mcq: any, opinionative: any, factCheck: any }>(
-      `${this.apiUrl}/generate-listening-test-qs`,
-      { text: this.listeningText },
-      { headers }
-    ).subscribe({
-      next: response => {
-        this.mcqResponse = response.mcq;
-        this.opinionativeResponse = response.opinionative;
-        this.factCheckResponse = response.factCheck;
-        console.log('Questions generated:', response);
-      },
-      error: error => {
-        console.log(this.listeningText);
-        console.error('Error generating questions:', error);
-      }
-    });
+      `${this.apiUrl}/generate-listening-test-qs`, { text: this.listeningText }, { headers }).subscribe({
+        next: response => {
+          this.mcqResponse = response.mcq;
+          this.opinionativeResponse = response.opinionative;
+          this.factCheckResponse = response.factCheck;
+          console.log('Questions generated:', response);
+        },
+        error: error => {
+          console.log(this.listeningText);
+          console.error('Error generating questions:', error);
+        }
+      });
   }
 
   toggleViewText(): void {
     this.showText = !this.showText;
   }
-
-
 
   submitAnswers(): void {
     let score = 0;
@@ -182,4 +175,5 @@ export class ListeningTestComponent {
   resetAudio(): void {
     const audio = this.audioPlayer.nativeElement;
     audio.currentTime = 0;
-  }}
+  }
+}

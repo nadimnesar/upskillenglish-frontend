@@ -42,7 +42,6 @@ export class QuickPracticeComponent implements OnInit {
       },
       error: (error: any) => {
         console.error('Error fetching questions:', error);
-        this.loading = false;
       },
       complete: () => {
         console.info('Fetch process completed');

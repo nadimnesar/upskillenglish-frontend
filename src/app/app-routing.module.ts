@@ -14,7 +14,6 @@ import { ImproveListeningComponent } from './features/improve-listening/improve-
 import { ReadingTestComponent } from './features/reading-test/reading-test.component';
 import { WritingTestComponent } from './features/writing-test/writing-test.component';
 import { ListeningTestComponent } from './features/listening-test/listening-test.component';
-import { ThreeInOneTestComponent } from './features/three-in-one-test/three-in-one-test.component';
 
 const routes: Routes = [
   {
@@ -115,14 +114,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'UpskillEnglish | Listening Test'
-    }
-  },
-  {
-    path: 'three-in-one-test',
-    component: ThreeInOneTestComponent,
-    canActivate: [AuthGuard],
-    data: {
-      title: 'UpskillEnglish | Three in One Test'
     }
   }
 ];

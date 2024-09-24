@@ -41,7 +41,6 @@ export class GeneratePassageComponent implements OnInit {
         },
         error: error => {
           console.error('Error fetching passage:', error);
-          this.loading = false;
         }
       });
   }

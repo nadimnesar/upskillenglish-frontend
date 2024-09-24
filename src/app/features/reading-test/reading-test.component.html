@@ -4,98 +4,101 @@
       <h1>Reading Test</h1>
     </div>
 
-    <div *ngIf="!part2Visible">
-      <div class="header">
-        <h1>Part-1</h1>
-        <h1>Mark-15</h1>
-      </div>
+    <div class="loader" *ngIf="loading"></div>
 
-      <h1 class="instruction">Please read the passage carefully and respond to the following questions.</h1>
+    <div *ngIf="!loading">
+      <div *ngIf="!part2Visible">
+        <div class="header">
+          <h1>Part-1</h1>
+          <h1>Mark-15</h1>
+        </div>
 
-      <div class="passage card">
-        <p *ngIf="passage">{{ passage }}</p>
-        <p *ngIf="!passage">Loading passage...</p>
-      </div>
+        <h1 class="instruction">Please read the passage carefully and respond to the following questions.</h1>
 
-      <div class="response-display-box card" *ngIf="mcqResponse?.mcqList?.length">
-        <h3>MCQ</h3>
-        <div *ngFor="let mcq of mcqResponse.mcqList; let i = index" class="item">
-          <p><strong>Question {{ i + 1 }}:</strong> {{ mcq.question }}</p>
-          <div class="options">
-            <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="a"> {{ mcq.optionA
-              }}</label><br>
-            <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="b"> {{ mcq.optionB
-              }}</label><br>
-            <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="c"> {{ mcq.optionC
-              }}</label><br>
-            <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="d"> {{ mcq.optionD
-              }}</label>
+        <div class="passage card">
+          <p *ngIf="passage">{{ passage }}</p>
+          <p *ngIf="!passage">Loading passage...</p>
+        </div>
+
+        <div class="response-display-box card" *ngIf="mcqResponse?.mcqList?.length">
+          <h3>MCQ</h3>
+          <div *ngFor="let mcq of mcqResponse.mcqList; let i = index" class="item">
+            <p><strong>Question {{ i + 1 }}:</strong> {{ mcq.question }}</p>
+            <div class="options">
+              <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="a"> {{ mcq.optionA
+                }}</label><br>
+              <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="b"> {{ mcq.optionB
+                }}</label><br>
+              <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="c"> {{ mcq.optionC
+                }}</label><br>
+              <label><input type="radio" name="mcq{{ i }}" [(ngModel)]="mcqSelected[i]" value="d"> {{ mcq.optionD
+                }}</label>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="response-display-box card" *ngIf="opinionativeResponse?.questionList?.length">
-        <h3>What's Your Opinion?</h3>
-        <div *ngFor="let question of opinionativeResponse.questionList; let i = index" class="item">
-          <p><strong>Question {{ i + 1 }}:</strong> {{ question.question }}</p>
-          <div class="options">
-            <label><input type="radio" name="opinionative{{ i }}" [(ngModel)]="opinionativeSelected[i]" value="Yes">
-              Yes</label><br>
-            <label><input type="radio" name="opinionative{{ i }}" [(ngModel)]="opinionativeSelected[i]" value="No">
-              No</label>
+        <div class="response-display-box card" *ngIf="opinionativeResponse?.questionList?.length">
+          <h3>What's Your Opinion?</h3>
+          <div *ngFor="let question of opinionativeResponse.questionList; let i = index" class="item">
+            <p><strong>Question {{ i + 1 }}:</strong> {{ question.question }}</p>
+            <div class="options">
+              <label><input type="radio" name="opinionative{{ i }}" [(ngModel)]="opinionativeSelected[i]" value="Yes">
+                Yes</label><br>
+              <label><input type="radio" name="opinionative{{ i }}" [(ngModel)]="opinionativeSelected[i]" value="No">
+                No</label>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="response-display-box card" *ngIf="factCheckResponse?.tfList?.length">
-        <h3>Check Fact</h3>
-        <div *ngFor="let factCheck of factCheckResponse.tfList; let i = index" class="item">
-          <p><strong>Question {{ i + 1 }}:</strong> {{ factCheck.question }}</p>
-          <div class="options">
-            <label><input type="radio" name="factCheck{{ i }}" [(ngModel)]="factCheckSelected[i]" value="true">
-              True</label><br>
-            <label><input type="radio" name="factCheck{{ i }}" [(ngModel)]="factCheckSelected[i]" value="false">
-              False</label>
+        <div class="response-display-box card" *ngIf="factCheckResponse?.tfList?.length">
+          <h3>Check Fact</h3>
+          <div *ngFor="let factCheck of factCheckResponse.tfList; let i = index" class="item">
+            <p><strong>Question {{ i + 1 }}:</strong> {{ factCheck.question }}</p>
+            <div class="options">
+              <label><input type="radio" name="factCheck{{ i }}" [(ngModel)]="factCheckSelected[i]" value="true">
+                True</label><br>
+              <label><input type="radio" name="factCheck{{ i }}" [(ngModel)]="factCheckSelected[i]" value="false">
+                False</label>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="submission">
-        <button (click)="submitAnswers()" class="submit-button">Submit Answers</button>
-      </div>
-    </div>
-
-    <div *ngIf="part2Visible">
-      <div class="header">
-        <h1>Part-2</h1>
-        <h1>Mark-10</h1>
-      </div>
-      <h1 class="instruction">Match the passages to the questions below.</h1>
-
-      <div *ngFor="let passage of passageStringList; let i = index" class="passage card">
-        <p>{{ passage }}</p>
-      </div>
-
-      <div class="response-display-box card" *ngFor="let info of matchingInfoResponse?.infoList; let i = index">
-        <p><strong>Question {{ i + 1 }}:</strong> {{ info.info }}</p>
-        <div class="options">
-          <label><input type="radio" name="matching{{ i }}" [(ngModel)]="matchingSelected[i]" value="A"> A</label><br>
-          <label><input type="radio" name="matching{{ i }}" [(ngModel)]="matchingSelected[i]" value="B"> B</label><br>
-          <label><input type="radio" name="matching{{ i }}" [(ngModel)]="matchingSelected[i]" value="C"> C</label><br>
-          <label><input type="radio" name="matching{{ i }}" [(ngModel)]="matchingSelected[i]" value="D"> D</label><br>
-          <label><input type="radio" name="matching{{ i }}" [(ngModel)]="matchingSelected[i]" value="E"> E</label>
+        <div class="submission">
+          <button (click)="submitAnswers()" class="submit-button">Submit Answers</button>
         </div>
       </div>
 
-      <div class="submission">
-        <button (click)="submitMatchingAnswers()" class="submit-button">Submit Matching Answers</button>
+      <div *ngIf="part2Visible">
+        <div class="header">
+          <h1>Part-2</h1>
+          <h1>Mark-10</h1>
+        </div>
+        <h1 class="instruction">Match the passages to the questions below.</h1>
+
+        <div *ngFor="let passage of passageStringList; let i = index" class="passage card">
+          <p>{{ passage }}</p>
+        </div>
+
+        <div class="response-display-box card" *ngFor="let info of matchingInfoResponse?.infoList; let i = index">
+          <p><strong>Question {{ i + 1 }}:</strong> {{ info.info }}</p>
+          <div class="options">
+            <label><input type="radio" name="matching{{ i }}" [(ngModel)]="matchingSelected[i]" value="A"> A</label><br>
+            <label><input type="radio" name="matching{{ i }}" [(ngModel)]="matchingSelected[i]" value="B"> B</label><br>
+            <label><input type="radio" name="matching{{ i }}" [(ngModel)]="matchingSelected[i]" value="C"> C</label><br>
+            <label><input type="radio" name="matching{{ i }}" [(ngModel)]="matchingSelected[i]" value="D"> D</label><br>
+            <label><input type="radio" name="matching{{ i }}" [(ngModel)]="matchingSelected[i]" value="E"> E</label>
+          </div>
+        </div>
+
+        <div class="submission">
+          <button (click)="submitMatchingAnswers()" class="submit-button">Submit Matching Answers</button>
+        </div>
+      </div>
+
+      <div *ngIf="finalScore !== null" class="score-display">
+        <h3>Your Final Score: {{ finalScore }}</h3>
       </div>
     </div>
-
-    <div *ngIf="finalScore !== null" class="score-display">
-      <h3>Your Final Score: {{ finalScore }}</h3>
-    </div>
-    
 
     <div *ngIf="passage" class="countdown"> {{ minutes }}:{{ seconds }} </div>
   </div>
