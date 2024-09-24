@@ -1,0 +1,165 @@
+$card-bg: #FFFFFF;
+$card-border: #DADFE1;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$border-radius: 12px;
+$button-bg: #007bff;
+$button-hover-bg: #0056b3;
+$audio-bg: #FFFFFF;
+$audio-control-color: #007bff;
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 80vh;
+  background-color: #f8f9fa;
+
+  .container {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    border: 1px solid $card-border;
+  }
+
+  .headtext {
+    margin: 20px 0;
+    text-align: center;
+  
+    h1 {
+      font-size: 2.5rem;
+      color: #333;
+      font-weight: 510;
+    }
+  }
+
+  .audio-section {
+    margin-bottom: 20px;
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .audio-container {
+      background-color: $audio-bg;
+      border: 1px solid $card-border;
+      border-radius: $border-radius;
+      box-shadow: $box-shadow;
+      padding: 15px;
+      margin-bottom: 20px;
+      text-align: center;
+
+      audio {
+        width: 100%;
+        outline: none;
+
+        &::-webkit-media-controls-panel {
+          background-color: $audio-bg;
+          color: $audio-control-color;
+        }
+
+        &::-webkit-media-controls-play-button,
+        &::-webkit-media-controls-mute-button {
+          color: $audio-control-color;
+        }
+      }
+    }
+
+    .audio-controls {
+      margin-top: 10px;
+
+      button {
+        background-color: $button-bg;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 0 10px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: $button-hover-bg;
+        }
+      }
+    }
+  }
+
+  .response-display-box {
+    background-color: $card-bg;
+    border: 1px solid $card-border;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+
+    h3 {
+      font-size: 1.75rem;
+      margin-bottom: 10px;
+    }
+
+    .item {
+      margin-bottom: 15px;
+
+      p {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .options {
+        label {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .submission {
+    .submit-button {
+      background-color: $button-bg;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: $button-hover-bg;
+      }
+    }
+  }
+
+  .score-display {
+    margin-top: 40px;
+    font-size: 1.5rem;
+    color: #28a745;
+    font-weight: bold;
+  }
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid $audio-control-color;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

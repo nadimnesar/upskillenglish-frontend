@@ -35,7 +35,6 @@ export class GenerateQuestionComponent {
     this.showCompletionAnswers = [];
   }
 
-  // Function to handle MCQ submission
   submitMCQ(): void {
     this.clearResponses();
     const token = localStorage.getItem('jwt');
@@ -58,7 +57,7 @@ export class GenerateQuestionComponent {
     });
   }
 
-  // Function to handle Opinionative submission
+
   submitOpinionative(): void {
     this.clearResponses();
     const token = localStorage.getItem('jwt');
@@ -81,7 +80,6 @@ export class GenerateQuestionComponent {
     });
   }
 
-  // Function to handle FactCheck submission
   submitFactCheck(): void {
     this.clearResponses();
     const token = localStorage.getItem('jwt');
@@ -104,7 +102,6 @@ export class GenerateQuestionComponent {
     });
   }
 
-  // Function to handle Completion submission
   submitCompletion(): void {
     this.clearResponses();
     const token = localStorage.getItem('jwt');
