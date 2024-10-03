@@ -1,8 +1,8 @@
 # UpskillEnglish - Frontend
 
-Backend Url: https://github.com/nadimnesar/upskillenglish
+The complete details and guidelines are in the README.md file in the backend repository. Please check there for comprehensive information on how to run the application and how this web application can enhance your English skills.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.2.
+Backend Repository: https://github.com/nadimnesar/upskillenglish
 
 ## Requirements
 
